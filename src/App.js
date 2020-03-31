@@ -11,6 +11,9 @@ const Header = styled.header`
 
 const Navigation = styled.nav`
   font-size: 1.5em;
+  font-family: "Catamaran";
+  font-weight: 700;
+  letter-spacing: 0.1em;
 `;
 
 const Links = styled.ul`
@@ -18,7 +21,7 @@ const Links = styled.ul`
   list-style: none;
   text-transform: uppercase;
   li {
-    margin: 0 10px;
+    margin: 0 20px;
   }
 `;
 
@@ -40,6 +43,26 @@ const HeroDetails = styled.div`
   p {
     font-size: 1.5em;
   }
+`;
+
+const Section = styled.section`
+  margin: 100px 0;
+  h2 {
+    margin: 50px;
+    font-size: 2.5em;
+  }
+`;
+
+const Stories = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 50px;
+`;
+
+const Story = styled.div`
+  width: 400px;
+  margin-bottom: 50px;
 `;
 
 function App() {
@@ -67,20 +90,55 @@ function App() {
           <p>January 23 - March 21, 2020</p>
         </HeroDetails>
       </Hero>
-      <main>
-        <h1>Stories</h1>
-        <div>
-          <img src="/assets/story.jpg" alt="Home at The Peninsula New York" />
-          <h3>Home at The Peninsula New York</h3>
-          <p>Through March 2020</p>
-          <p>
-            Lehmann Maupin presents an exhibition featuring Ashley Bickerton,
-            Heidi Bucher, Do Ho Suh, Catherine Opie, and Angel Otero that
-            showcases works addressing themes of identity, heritage, and
-            community.
-          </p>
-        </div>
-      </main>
+      <Section>
+        <h2>Stories</h2>
+        <Stories>
+          <Story>
+            <img src="/assets/story.jpg" alt="Home at The Peninsula New York" />
+            <h3>Home at The Peninsula New York</h3>
+            <p>Through March 2020</p>
+            <p>
+              Lehmann Maupin presents an exhibition featuring Ashley Bickerton,
+              Heidi Bucher, Do Ho Suh, Catherine Opie, and Angel Otero that
+              showcases works addressing themes of identity, heritage, and
+              community.
+            </p>
+          </Story>
+          <Story>
+            <img src="/assets/story.jpg" alt="Home at The Peninsula New York" />
+            <h3>Home at The Peninsula New York</h3>
+            <p>Through March 2020</p>
+            <p>
+              Lehmann Maupin presents an exhibition featuring Ashley Bickerton,
+              Heidi Bucher, Do Ho Suh, Catherine Opie, and Angel Otero that
+              showcases works addressing themes of identity, heritage, and
+              community.
+            </p>
+          </Story>
+          <Story>
+            <img src="/assets/story.jpg" alt="Home at The Peninsula New York" />
+            <h3>Home at The Peninsula New York</h3>
+            <p>Through March 2020</p>
+            <p>
+              Lehmann Maupin presents an exhibition featuring Ashley Bickerton,
+              Heidi Bucher, Do Ho Suh, Catherine Opie, and Angel Otero that
+              showcases works addressing themes of identity, heritage, and
+              community.
+            </p>
+          </Story>
+          <Story>
+            <img src="/assets/story.jpg" alt="Home at The Peninsula New York" />
+            <h3>Home at The Peninsula New York</h3>
+            <p>Through March 2020</p>
+            <p>
+              Lehmann Maupin presents an exhibition featuring Ashley Bickerton,
+              Heidi Bucher, Do Ho Suh, Catherine Opie, and Angel Otero that
+              showcases works addressing themes of identity, heritage, and
+              community.
+            </p>
+          </Story>
+        </Stories>
+      </Section>
     </div>
   );
 }
