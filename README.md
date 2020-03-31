@@ -3,14 +3,19 @@
 This is [the repository](https://github.com/jobegood49/nawaart) of Nawaart.
 [Click here](https://nawaart.jonathannicolas.dev) to access it.
 
+## Inspirations
+
+- https://mayinart.com
+- https://lehmannmaupin.com
+
 ## Design
 
 ![Design Asset](assets/design.jpg)
 
 Design assets:
 
-- Figma File: https://figma.com/...
-- Figma Prototype: https://figma.com/...
+- Figma File: https://www.figma.com/file/InMducAuEQbEjvXvlDHMPU/Nawaart?node-id=0%3A1
+- Figma Prototype: https://www.figma.com/proto/InMducAuEQbEjvXvlDHMPU/Nawaart?node-id=2%3A0&scaling=min-zoom
 
 ## Sitemap
 
@@ -27,6 +32,9 @@ Design assets:
 - Owners can login
   - When authenticated in particular pages such as Artists, Artworks, Stories: they can modify (add, edit, and remove) the data.
 - Visitors can view Artists, Artworks, and Stories
+  - Visitor can view single Artist page
+  - Visitor can view single Artwork page
+  - Visitor can view single Story page
 - Owners can add, edit, and remove an Artist
 - Owners can add, edit, and remove a Story
 - Owners can add, edit, and remove an Artwork
@@ -72,7 +80,33 @@ Design assets:
 {
   "title": "Let It Grow",
   "artist": ObjectId,
-  "image": "https://exampple.com/images/let-it-grow.jpg"
+  "image": "https://example.com/images/let-it-grow.jpg"
+}
+```
+
+### Stories
+
+- Image
+- Title
+- Content
+
+```json
+{
+  "title": "Art in the park",
+  "image": "https://example.com/images/art-in-the-park.jpg",
+  "content": "<p>
+  It's a sad fact that many people won’t ever step into art galleries and
+  museums. Some are reluctant to do so because those places can be intimidating.
+  Even contemporary art can have a snooty, rarefied air about it that feels cold
+  and uninviting.
+</p>
+<p>
+  Art is important because it’s part of the story we tell about ourselves; it’s
+  our culture. It’s something that can be enjoyed in a spectrum of senses, from
+  titillation to edification. But it’s often just not easy to “get into,” and
+  that’s partly because of snobbery, but it’s also because art really is
+  sophisticated and therefore demands time and effort.
+</p>"
 }
 ```
 
