@@ -1,19 +1,41 @@
 import React from "react";
+import styled from "styled-components";
+
+const Header = styled.header`
+  display: flex;
+  height: 120px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+`;
+
+const Navigation = styled.nav`
+  font-size: 1.5em;
+`;
+
+const Links = styled.ul`
+  display: flex;
+  list-style: none;
+  text-transform: uppercase;
+  li {
+    margin: 0 10px;
+  }
+`;
 
 function App() {
   return (
     <div>
-      <div>
-        <nav>
-          <img src="/nawaart-logo.svg" alt="nawaart" />
-          <ul>
+      <Header>
+        <img src="/nawaart-logo.svg" alt="nawaart" />
+        <Navigation>
+          <Links>
             <li>Artists</li>
             <li>Artworks</li>
             <li>Stories</li>
             <li>About</li>
-          </ul>
-        </nav>
-      </div>
+          </Links>
+        </Navigation>
+      </Header>
       <div>
         <h2>Billy Childish</h2>
         <p>
