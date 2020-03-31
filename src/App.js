@@ -36,6 +36,7 @@ const Hero = styled.div`
 `;
 
 const HeroDetails = styled.div`
+  font-family: "Armata";
   padding: 50px;
   h2 {
     font-size: 2em;
