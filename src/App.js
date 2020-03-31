@@ -6,7 +6,7 @@ const Header = styled.header`
   height: 120px;
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px;
+  padding: 50px;
 `;
 
 const Navigation = styled.nav`
@@ -22,29 +22,51 @@ const Links = styled.ul`
   }
 `;
 
+const Hero = styled.div`
+  height: 100vh;
+  background-image: url("/assets/hero.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
+const HeroDetails = styled.div`
+  padding: 50px;
+  h2 {
+    font-size: 2em;
+  }
+  p {
+    font-size: 1.5em;
+  }
+`;
+
 function App() {
   return (
     <div>
-      <Header>
-        <img src="/nawaart-logo.svg" alt="nawaart" />
-        <Navigation>
-          <Links>
-            <li>Artists</li>
-            <li>Artworks</li>
-            <li>Stories</li>
-            <li>About</li>
-          </Links>
-        </Navigation>
-      </Header>
-      <div>
-        <h2>Billy Childish</h2>
-        <p>
-          remember all the / high and exalted things remember all the low / and
-          broken things
-        </p>
-        <p>New York, W 22nd Street</p>
-        <p>January 23 - March 21, 2020</p>
-      </div>
+      <Hero>
+        <Header>
+          <img src="/nawaart-logo.svg" alt="nawaart" />
+          <Navigation>
+            <Links>
+              <li>Artists</li>
+              <li>Artworks</li>
+              <li>Stories</li>
+              <li>About</li>
+            </Links>
+          </Navigation>
+        </Header>
+        <HeroDetails>
+          <h2>Billy Childish</h2>
+          <p>
+            remember all the / high and exalted things remember all the low /
+            and broken things
+          </p>
+          <p>New York, W 22nd Street</p>
+          <p>January 23 - March 21, 2020</p>
+        </HeroDetails>
+      </Hero>
       <main>
         <h1>Stories</h1>
         <div>
