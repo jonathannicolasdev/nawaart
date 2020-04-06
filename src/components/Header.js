@@ -33,7 +33,9 @@ const Links = styled.ul`
 const Header = () => {
   return (
     <HeaderStyled>
-      <img src="/nawaart-logo.svg" alt="nawaart" />
+      <Link to="/">
+        <img src="/nawaart-logo.svg" alt="nawaart" />
+      </Link>
       <Navigation>
         <Links>
           <li>
