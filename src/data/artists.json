@@ -1,6 +1,7 @@
 [
   {
     "_id": 1,
+    "slug": "aung-ko",
     "name": "Aung Ko",
     "photo": "https://rivergallerymyanmar.com/public/storage/artists/November2019/Tu7zFZyISCjGsfMbB7YB.jpg",
     "biography": {
@@ -14,6 +15,7 @@
   },
   {
     "_id": 2,
+    "slug": "htein-lin",
     "name": "Htein Lin",
     "photo": "https://rivergallerymyanmar.com/public/storage/artists/November2019/lo8A458FehRWuQjPqUOR.jpg",
     "biography": {
