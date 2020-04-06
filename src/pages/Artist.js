@@ -7,19 +7,22 @@ import artistsData from "../data/artists.json";
 
 const Artists = () => {
   const { slug } = useParams();
+  const artists = artistsData.filter((artist) => artist.slug === slug);
+  const artist = artists[0];
+  // backend.com/api/artists/jonathan-nicolas
+  // { name: '', photo: '' }
+
   return (
     <div>
       <Header></Header>
-      {artistsData
-        .filter((artist) => artist.slug === slug)
-        .map((artist, index) => {
-          return (
-            <div key={index}>
-              <h3>{artist.name}</h3>
-              <img src={artist.photo} alt={artist.name} />
-            </div>
-          );
-        })}
+      {artist ? (
+        <div>
+          <h3>{artist.name}</h3>s
+          <img src={artist.photo} alt={artist.name} />
+        </div>
+      ) : (
+        <div>Artist not found</div>
+      )}
     </div>
   );
 };
