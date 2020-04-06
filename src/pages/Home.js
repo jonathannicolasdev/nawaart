@@ -1,29 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-
-const Header = styled.header`
-  display: flex;
-  height: 120px;
-  justify-content: space-between;
-  align-items: center;
-  padding: 50px;
-`;
-
-const Navigation = styled.nav`
-  font-size: 1.5em;
-  font-family: "Catamaran";
-  font-weight: 700;
-  letter-spacing: 0.1em;
-`;
-
-const Links = styled.ul`
-  display: flex;
-  list-style: none;
-  text-transform: uppercase;
-  li {
-    margin: 0 20px;
-  }
-`;
+import Header from "../components/Header";
 
 const Hero = styled.div`
   height: 100vh;
@@ -71,17 +48,7 @@ class HomePage extends Component {
     return (
       <div>
         <Hero>
-          <Header>
-            <img src="/nawaart-logo.svg" alt="nawaart" />
-            <Navigation>
-              <Links>
-                <li>Artists</li>
-                <li>Artworks</li>
-                <li>Stories</li>
-                <li>About</li>
-              </Links>
-            </Navigation>
-          </Header>
+          <Header></Header>
           <HeroDetails>
             <h2>Billy Childish</h2>
             <p>
