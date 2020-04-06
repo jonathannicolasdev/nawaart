@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const HeaderStyled = styled.header`
   display: flex;
@@ -23,6 +24,10 @@ const Links = styled.ul`
   li {
     margin: 0 20px;
   }
+  a {
+    color: black;
+    text-decoration: none;
+  }
 `;
 
 const Header = () => {
@@ -31,10 +36,18 @@ const Header = () => {
       <img src="/nawaart-logo.svg" alt="nawaart" />
       <Navigation>
         <Links>
-          <li>Artists</li>
-          <li>Artworks</li>
-          <li>Stories</li>
-          <li>About</li>
+          <li>
+            <Link to="/artists">Artists</Link>
+          </li>
+          <li>
+            <Link to="/artworks">Artworks</Link>
+          </li>
+          <li>
+            <Link to="/stories">Stories</Link>
+          </li>
+          <li>
+            <Link to="/about">About</Link>
+          </li>
         </Links>
       </Navigation>
     </HeaderStyled>
