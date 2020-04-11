@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import HomePage from "./pages/Home";
 import ArtistsPage from "./pages/Artists";
 import ArtistPage from "./pages/Artist";
+import ArtworksPage from "./pages/Artworks";
 
 class App extends Component {
   render() {
@@ -12,6 +13,7 @@ class App extends Component {
           <Route path="/" component={HomePage} exact />
           <Route path="/artists/:slug" component={ArtistPage} />
           <Route path="/artists" component={ArtistsPage} />
+          <Route path="/artworks" component={ArtworksPage} />
         </Switch>
       </BrowserRouter>
     );

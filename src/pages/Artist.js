@@ -31,10 +31,14 @@ const ExhibitionsList = styled.ul`
 
 const Artists = () => {
   const { slug } = useParams();
+
   const artists = artistsData.filter((artist) => artist.slug === slug);
   const artist = artists[0];
   // backend.com/api/artists/jonathan-nicolas
   // { name: '', photo: '' }
+
+  // const artworks = artworks
+  // backend.com/api/artists/jonathan-nicolas/artworks
 
   return (
     <div>

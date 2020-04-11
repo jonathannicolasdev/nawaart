@@ -23,8 +23,6 @@ const ArtistImage = styled.img`
   object-fit: cover;
 `;
 
-console.log(artistsData);
-
 const Artists = () => {
   return (
     <div>
