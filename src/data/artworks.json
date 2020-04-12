@@ -1,21 +1,25 @@
 [
   {
     "artistId": 1,
+    "slug": "Away-from-home-(5)",
     "title": "Away from home (5)",
     "image": "https://rivergallerymyanmar.com/public/storage/galleries/October2019/HVEvuh9AONYJ8ffWYf7K.jpg"
   },
   {
     "artistId": 1,
+    "slug": "Away-from-home-(28)",
     "title": "Away from home (28)",
     "image": "https://rivergallerymyanmar.com/public/storage/galleries/October2019/lIkjO5h3LtHdSpMFSVbL.jpg"
   },
   {
     "artistId": 2,
+    "slug": "How-do-you-find-Yangon",
     "title": "How do you find Yangon",
     "image": "https://rivergallerymyanmar.com/public/storage/galleries/October2019/UbXibsCmLvyWRsOQT2Ve.jpg"
   },
   {
     "artistId": 2,
+    "slug": "Signs-of-the-Times-(7)",
     "title": "Signs of the Times (7)",
     "image": "https://rivergallerymyanmar.com/public/storage/galleries/October2019/QvK1rRVQjwcM9Z7wv46H.jpg"
   }

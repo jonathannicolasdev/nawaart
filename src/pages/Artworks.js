@@ -29,7 +29,7 @@ const Artworks = () => {
         {artworksData.map((artwork, index) => {
           return (
             <ArtworkCard key={index}>
-              <Link>
+              <Link to={`/artworks/${artwork.slug}`}>
                 <img src={artwork.image} alt="" />
               </Link>
               <h3>{artwork.title}</h3>
