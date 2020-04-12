@@ -6,6 +6,7 @@ import ArtistPage from "./pages/Artist";
 import ArtworksPage from "./pages/Artworks";
 import ArtworkPage from "./pages/Artwork";
 import StoriesPage from "./pages/Stories";
+import RegisterPage from "./pages/Register";
 
 class App extends Component {
   render() {
@@ -18,6 +19,7 @@ class App extends Component {
           <Route path="/artworks/:slug" component={ArtworkPage} />
           <Route path="/artworks" component={ArtworksPage} />
           <Route path="/stories" component={StoriesPage} />
+          <Route path="/register" component={RegisterPage} />
         </Switch>
       </BrowserRouter>
     );
