@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import artworksData from "../data/artworks.json";
 
-console.log(artworksData);
-
 const ArtworksGallery = styled.div`
   display: flex;
   width: 1200px;
