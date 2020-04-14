@@ -9,6 +9,7 @@ import StoriesPage from "./pages/Stories";
 import RegisterPage from "./pages/Register";
 import StoryPage from "./pages/Story";
 import AboutPage from "./pages/About";
+import LoginPage from "./pages/Login";
 
 class App extends Component {
   render() {
@@ -24,6 +25,7 @@ class App extends Component {
           <Route path="/stories/:slug" component={StoryPage}></Route>
           <Route path="/stories" component={StoriesPage} />
           <Route path="/register" component={RegisterPage} />
+          <Route path="/login" component={LoginPage} />
         </Switch>
       </BrowserRouter>
     );
