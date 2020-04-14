@@ -1,6 +1,7 @@
 [
   {
     "_id": 1,
+    "slug": "The-Mad-Men-of-Colonial-Burma",
     "title": "The “Mad Men” of Colonial Burma",
     "date": "November 17, 2020",
     "image": "https://www.myanmore.com/wp-content/uploads/2020/04/%E2%80%9CSailor%E2%80%9D-brand-safety-matches-manufactured-by-Adamjee-Hajee-Dawood-and-Co.-in-Burma..jpg",
@@ -8,16 +9,18 @@
   },
   {
     "_id": 2,
+    "slug": "Thoe-Htein:-Exploring-the-future-and-the-past",
     "title": "Thoe Htein: Exploring the future and the past",
     "date": "December 17, 2020",
     "image": "https://www.myanmore.com/wp-content/uploads/2020/03/6-696x467.jpg",
-    "content": "Many artists draw inspiration from many aspects of their life. In addition, their view of the time period they’re in and about is infused into their art. What they see, hear and think about – all part of his world – show up in the colours, the medium, and the perspectives they choose. Emily Bronte may have penned “Wuthering Heights” from the comforts of her own home, hardly having any contact with the outside world, but in an accelerated time like today, no one really lives in a vacuum anymore; so the experiences the artist lives through are necessarily part of whatever they create."
+    "content": "<p>Many artists draw inspiration from many aspects of their life.</p></p> In addition, their view of the time period they’re in and about is infused into their art. What they see, hear and think about – all part of his world – show up in the colours, the medium, and the perspectives they choose. Emily Bronte may have penned “Wuthering Heights” from the comforts of her own home, hardly having any contact with the outside world, but in an accelerated time like today, no one really lives in a vacuum anymore; so the experiences the artist lives through are necessarily part of whatever they create.</p>"
   },
   {
     "_id": 3,
+    "slug": "Rangoon-Rhythm:-EilliE",
     "title": "Rangoon Rhythm: EilliE",
     "date": "April 17, 2020",
     "image": "https://www.myanmore.com/wp-content/uploads/2020/03/eillie-2-1068x712.jpg",
-    "content": "EilliE started her music career in late 2018 when she was 18. The girl has already become a favourite rapper for the local rap music industry.With her powerful rapping skills and distinctive fashion style, she talked about her passion for music and balance between life and career. EilliE, with the given name of Eaint Thet Hmu, joined BG18 Record Label in 2018. It all started at the 2018 Invasion Music Festival. “I was hanging out with my friends and also a bit drunk at that time.” she laughed."
+    "content": "<p>EilliE started her music career in late 2018 when she was 18.</p><p> The girl has already become a favourite rapper for the local rap music industry.With her powerful rapping skills and distinctive fashion style, she talked about her passion for music and balance between life and career. EilliE, with the given name of Eaint Thet Hmu, joined BG18 Record Label in 2018. It all started at the 2018 Invasion Music Festival. “I was hanging out with my friends and also a bit drunk at that time.” she laughed.</p>"
   }
 ]

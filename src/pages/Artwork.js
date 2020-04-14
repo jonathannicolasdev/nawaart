@@ -4,18 +4,16 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import artworksData from "../data/artworks.json";
 
+const ArtworkContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
 const Artwork = () => {
   const { slug } = useParams();
-  console.log(slug);
-  console.log(artworksData);
   const artwork = artworksData.filter((artwork) => {
     return artwork.slug === slug;
   })[0];
-
-  const ArtworkContainer = styled.div`
-    display: flex;
-    justify-content: center;
-  `;
 
   return (
     <div>
