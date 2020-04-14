@@ -58,6 +58,7 @@ Design assets:
 ```json
 {
   "_id": ObjectId,
+  "slug": "adha-joe",
   "name": "Adha Joe",
   "photo": "https://exampple.com/images/adha-joe.jpg",
   "biography": {
