@@ -39,7 +39,7 @@ const Login = () => {
         email,
         password,
       });
-      console.log(response);
+      console.log(response.data);
     } catch (e) {
       console.log(e);
     }

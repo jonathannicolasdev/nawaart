@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
-import artistsData from "../data/artists.json";
+import axios from "axios";
 import styled from "styled-components";
 
 const ArtistsGallery = styled.div`
@@ -24,11 +24,28 @@ const ArtistImage = styled.img`
 `;
 
 const Artists = () => {
+  const [artists, setArtists] = useState([]);
+  const [error, setError] = useState();
+
+  const url = "http://localhost:8000/artists";
+
+  useEffect(() => {
+    axios
+      .get(url)
+      .then((response) => {
+        setArtists(response.data.artists);
+      })
+      .catch((error) => {
+        setError(error);
+      });
+  }, [url]);
+
   return (
     <div>
       <Header></Header>
+      {error && <span>{error}</span>}
       <ArtistsGallery>
-        {artistsData.map((artist, index) => {
+        {artists.map((artist, index) => {
           return (
             <ArtistCard key={index}>
               <Link to={`/artists/${artist.slug}`}>
