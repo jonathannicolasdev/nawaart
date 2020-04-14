@@ -8,6 +8,7 @@ import ArtworkPage from "./pages/Artwork";
 import StoriesPage from "./pages/Stories";
 import RegisterPage from "./pages/Register";
 import StoryPage from "./pages/Story";
+import AboutPage from "./pages/About";
 
 class App extends Component {
   render() {
@@ -15,6 +16,7 @@ class App extends Component {
       <BrowserRouter>
         <Switch>
           <Route path="/" component={HomePage} exact />
+          <Route path="/about" component={AboutPage} exact />
           <Route path="/artists/:slug" component={ArtistPage} />
           <Route path="/artists" component={ArtistsPage} />
           <Route path="/artworks/:slug" component={ArtworkPage} />
