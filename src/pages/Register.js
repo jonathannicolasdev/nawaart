@@ -41,7 +41,7 @@ const Register = () => {
     try {
       event.preventDefault();
       const response = await axios.post(
-        "http://localhost:8000/users/register",
+        "https://nawaart.herokuapp.com/users/register",
         {
           name,
           email,

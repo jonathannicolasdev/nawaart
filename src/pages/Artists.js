@@ -27,7 +27,7 @@ const Artists = () => {
   const [artists, setArtists] = useState([]);
   const [error, setError] = useState();
 
-  const url = "http://localhost:8000/artists";
+  const url = "https://nawaart.herokuapp.com/artists";
 
   useEffect(() => {
     axios

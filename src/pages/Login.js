@@ -35,10 +35,13 @@ const Login = () => {
   const handleSubmit = async (event) => {
     try {
       event.preventDefault();
-      const response = await axios.post("http://localhost:8000/users/login", {
-        email,
-        password,
-      });
+      const response = await axios.post(
+        "https://nawaart.herokuapp.com/users/login",
+        {
+          email,
+          password,
+        }
+      );
       console.log(response.data);
     } catch (e) {
       console.log(e);
