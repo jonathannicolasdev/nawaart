@@ -28,22 +28,17 @@ const Input = styled.input`
   padding: 10px;
 `;
 
-const Register = () => {
-  const [name, setName] = useState("");
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = async (event) => {
     try {
       event.preventDefault();
-      const response = await axios.post(
-        "http://localhost:8000/users/register",
-        {
-          name,
-          email,
-          password,
-        }
-      );
+      const response = await axios.post("http://localhost:8000/users/login", {
+        email,
+        password,
+      });
       console.log(response);
     } catch (e) {
       console.log(e);
@@ -84,4 +79,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Login;
