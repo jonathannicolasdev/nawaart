@@ -21,7 +21,7 @@ const About = () => {
       <Header></Header>
       <AboutContainer>
         <p>This is Nawaart</p>
-        <img src="/assets/aung-jo.jpg"></img>
+        <img src="/assets/aung-jo.jpg" alt="About"></img>
         <p> this is the about page</p>
       </AboutContainer>
     </div>
