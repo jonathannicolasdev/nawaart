@@ -40,18 +40,20 @@ const Artworks = () => {
     <div>
       <Header></Header>
       {error && <p>{error}</p>}
-      <ArtworksGallery>
-        {artworks.map((artwork, index) => {
-          return (
-            <ArtworkCard key={index}>
-              <Link to={`/artworks/${artwork.slug}`}>
-                <img src={artwork.image} alt={artwork.title} />
-              </Link>
-              <h3>{artwork.title}</h3>
-            </ArtworkCard>
-          );
-        })}
-      </ArtworksGallery>
+      {!error && (
+        <ArtworksGallery>
+          {artworks.map((artwork, index) => {
+            return (
+              <ArtworkCard key={index}>
+                <Link to={`/artworks/${artwork.slug}`}>
+                  <img src={artwork.image} alt={artwork.title} />
+                </Link>
+                <h3>{artwork.title}</h3>
+              </ArtworkCard>
+            );
+          })}
+        </ArtworksGallery>
+      )}
     </div>
   );
 };

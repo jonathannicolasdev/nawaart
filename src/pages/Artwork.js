@@ -31,18 +31,20 @@ const Artwork = () => {
     <div>
       <Header></Header>
       {error && <p>{error}</p>}
-      <ArtworkContainer>
-        {artwork ? (
-          <div>
-            <img src={artwork.image} alt="" />
-            <h3>{artwork.title}</h3>
-          </div>
-        ) : (
-          <div>
-            <h3>Artwork not found</h3>
-          </div>
-        )}
-      </ArtworkContainer>
+      {!error && (
+        <ArtworkContainer>
+          {artwork ? (
+            <div>
+              <img src={artwork.image} alt="" />
+              <h3>{artwork.title}</h3>
+            </div>
+          ) : (
+            <div>
+              <h3>Artwork not found</h3>
+            </div>
+          )}
+        </ArtworkContainer>
+      )}
     </div>
   );
 };
