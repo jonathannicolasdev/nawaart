@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import axios from "axios";
+
 import Header from "../components/Header";
-import artworksData from "../data/artworks.json";
 
 const ArtworksGallery = styled.div`
   display: flex;
@@ -20,15 +21,31 @@ const ArtworkCard = styled.div`
 `;
 
 const Artworks = () => {
+  const [artworks, setArtworks] = useState([]);
+  const [error, setError] = useState();
+  const url = process.env.REACT_APP_API_URL + "/artworks";
+
+  useEffect(() => {
+    axios
+      .get(url)
+      .then((response) => {
+        setArtworks(response.data.artworks);
+      })
+      .catch((error) => {
+        setError(error);
+      });
+  }, [url]);
+
   return (
     <div>
       <Header></Header>
+      {error && <p>{error}</p>}
       <ArtworksGallery>
-        {artworksData.map((artwork, index) => {
+        {artworks.map((artwork, index) => {
           return (
             <ArtworkCard key={index}>
               <Link to={`/artworks/${artwork.slug}`}>
-                <img src={artwork.image} alt="" />
+                <img src={artwork.image} alt={artwork.title} />
               </Link>
               <h3>{artwork.title}</h3>
             </ArtworkCard>

@@ -26,7 +26,6 @@ const ArtistImage = styled.img`
 const Artists = () => {
   const [artists, setArtists] = useState([]);
   const [error, setError] = useState();
-
   const url = "https://nawaart.herokuapp.com/artists";
 
   useEffect(() => {
