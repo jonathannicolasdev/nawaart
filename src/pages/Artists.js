@@ -28,7 +28,7 @@ const ArtistImage = styled.img`
 const Artists = () => {
   const [artists, setArtists] = useState([]);
   const [error, setError] = useState();
-  const url = "https://nawaart.herokuapp.com/artists";
+  const url = process.env.REACT_APP_API_URL + "/artists";
 
   useEffect(() => {
     axios

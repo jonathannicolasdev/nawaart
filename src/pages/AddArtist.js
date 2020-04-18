@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
+import { getToken } from "../utils/token";
 
 const FormContainer = styled.div`
   display: flex;
@@ -40,7 +41,7 @@ const AddArtist = () => {
     photo: "",
     biography: {
       about: "",
-      exhibitions: [],
+      exhibitions: ["this is the first exhibit"],
     },
   });
 
@@ -49,11 +50,13 @@ const AddArtist = () => {
   const handleSubmit = async (event) => {
     try {
       event.preventDefault();
-      //   const response = await axios.post(url, artist);
-      //   console.log(response.data);
-      console.log(artist);
+      const response = await axios.post(url, artist, {
+        headers: {
+          Authorization: "Bearer " + getToken(),
+        },
+      });
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
