@@ -55,6 +55,9 @@ const AddArtist = () => {
           Authorization: "Bearer " + getToken(),
         },
       });
+      if (response.data.artist) {
+        // redirect to artists page after response is successful
+      }
     } catch (error) {
       console.error(error);
     }
