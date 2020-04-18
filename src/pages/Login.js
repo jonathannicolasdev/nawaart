@@ -1,6 +1,10 @@
 import React, { useState } from "react";
+import { Redirect } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
+
+import { getToken } from "../utils/token";
+import { setToken } from "../utils/token";
 
 const FormContainer = styled.div`
   display: flex;
@@ -35,50 +39,56 @@ const Login = () => {
   const handleSubmit = async (event) => {
     try {
       event.preventDefault();
-      const response = await axios.post(
-        "https://nawaart.herokuapp.com/users/login",
-        {
-          email,
-          password,
-        }
-      );
+
+      const url = process.env.REACT_APP_API_URL + `/users/login`;
+      const response = await axios.post(url, {
+        email,
+        password,
+      });
       console.log(response.data);
+      setToken(response.data.token);
     } catch (e) {
       console.log(e);
     }
   };
 
   return (
-    <FormContainer>
-      <h1>Login</h1>
-      <Form onSubmit={handleSubmit}>
-        <FormGroup>
-          <Label htmlFor="email">Email</Label>
-          <Input
-            type="email"
-            placeholder="name@example.com"
-            value={email}
-            onChange={(event) => {
-              setEmail(event.target.value);
-            }}
-          />
-        </FormGroup>
-        <FormGroup>
-          <Label htmlFor="password">Password</Label>
-          <Input
-            type="password"
-            placeholder="*****"
-            value={password}
-            onChange={(event) => {
-              setPassword(event.target.value);
-            }}
-          />
-        </FormGroup>
-        <FormGroup>
-          <Input type="submit" value="Login" />
-        </FormGroup>
-      </Form>
-    </FormContainer>
+    <React.Fragment>
+      {getToken() ? (
+        <Redirect to="/" />
+      ) : (
+        <FormContainer>
+          <h1>Login</h1>
+          <Form onSubmit={handleSubmit}>
+            <FormGroup>
+              <Label htmlFor="email">Email</Label>
+              <Input
+                type="email"
+                placeholder="name@example.com"
+                value={email}
+                onChange={(event) => {
+                  setEmail(event.target.value);
+                }}
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label htmlFor="password">Password</Label>
+              <Input
+                type="password"
+                placeholder="*****"
+                value={password}
+                onChange={(event) => {
+                  setPassword(event.target.value);
+                }}
+              />
+            </FormGroup>
+            <FormGroup>
+              <Input type="submit" value="Login" />
+            </FormGroup>
+          </Form>
+        </FormContainer>
+      )}
+    </React.Fragment>
   );
 };
 
