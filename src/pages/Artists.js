@@ -4,6 +4,8 @@ import Header from "../components/Header";
 import axios from "axios";
 import styled from "styled-components";
 
+import { getToken } from "../utils/token";
+
 const ArtistsGallery = styled.div`
   display: flex;
 `;
@@ -42,6 +44,8 @@ const Artists = () => {
   return (
     <div>
       <Header></Header>
+      {getToken() && <button>Add Artist</button>}
+
       {error && <span>{error}</span>}
       <ArtistsGallery>
         {artists.map((artist, index) => {

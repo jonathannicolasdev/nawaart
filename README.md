@@ -25,6 +25,18 @@ Design assets:
 - Artists
 - Stories
 
+| Name            | Routes        |
+| --------------- | ------------- |
+| Home            | /             |
+| About           | /about        |
+| Artists         | /artists      |
+| Add New Artist  | /artists/add  |
+| Artworks        | /artworks     |
+| Add new Artwork | /artworks/add |
+| Stories         | /stories      |
+| Add New Story   | /stories/add  |
+| Login           | /login        |
+
 ## Features
 
 ### Frontend
