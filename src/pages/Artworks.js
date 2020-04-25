@@ -26,23 +26,24 @@ const Artworks = () => {
   const url = process.env.REACT_APP_API_URL + "/artworks";
 
   useEffect(() => {
-    axios
-      .get(url)
-      .then((response) => {
-        setArtworks(response.data.artworks);
-      })
-      .catch((error) => {
-        setError(error);
-      });
-  }, [url]);
+    const fetchData = async () => {
+      const response = await axios.get(url);
+      const artworks = response.data.artworks;
+      if (artworks) setArtworks(artworks);
+      else setError(error);
+    };
+
+    fetchData();
+  }, [url, artworks, error]);
 
   return (
     <div>
       <Header></Header>
       {error && <p>{error}</p>}
-      {!error && (
-        <ArtworksGallery>
-          {artworks.map((artwork, index) => {
+
+      <ArtworksGallery>
+        {artworks.length > 0 ? (
+          artworks.map((artwork, index) => {
             return (
               <ArtworkCard key={index}>
                 <Link to={`/artworks/${artwork.slug}`}>
@@ -51,9 +52,11 @@ const Artworks = () => {
                 <h3>{artwork.title}</h3>
               </ArtworkCard>
             );
-          })}
-        </ArtworksGallery>
-      )}
+          })
+        ) : (
+          <div>No artworks found</div>
+        )}
+      </ArtworksGallery>
     </div>
   );
 };

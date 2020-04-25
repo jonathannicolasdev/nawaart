@@ -30,13 +30,15 @@ const Artists = () => {
   const [error, setError] = useState();
   const url = process.env.REACT_APP_API_URL + "/artists";
 
-  useEffect(async () => {
-    const response = await axios.get(url);
-    const artists = response.data.artists;
-
-    if (artists) setArtists(artists);
-    else setError(error);
-  }, [url]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await axios.get(url);
+      const artists = response.data.artists;
+      if (artists) setArtists(artists);
+      else setError(error);
+    };
+    fetchData();
+  }, [url, artists, error]);
 
   return (
     <div>
