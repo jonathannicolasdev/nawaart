@@ -34,7 +34,7 @@ const Artists = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(url);
-        setArtists(artists);
+        setArtists(response.data.artists);
       } catch (error) {
         console.error(error);
       }

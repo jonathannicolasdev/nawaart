@@ -29,7 +29,7 @@ const Artworks = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(url);
-        setArtworks(artworks);
+        setArtworks(response.data.artworks);
       } catch (error) {
         console.error(error);
       }
