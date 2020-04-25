@@ -40,7 +40,7 @@ const Artists = () => {
       }
     };
     fetchData();
-  }, [url, artists, error]);
+  }, [url]);
 
   return (
     <div>

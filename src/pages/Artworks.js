@@ -35,7 +35,7 @@ const Artworks = () => {
       }
     };
     fetchData();
-  }, [url, artworks, error]);
+  }, [url]);
 
   return (
     <div>
