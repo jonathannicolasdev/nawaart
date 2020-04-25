@@ -32,10 +32,12 @@ const Artists = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get(url);
-      const artists = response.data.artists;
-      if (artists) setArtists(artists);
-      else setError(error);
+      try {
+        const response = await axios.get(url);
+        setArtists(artists);
+      } catch (error) {
+        console.error(error);
+      }
     };
     fetchData();
   }, [url, artists, error]);

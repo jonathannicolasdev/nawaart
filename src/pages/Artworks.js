@@ -27,12 +27,13 @@ const Artworks = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get(url);
-      const artworks = response.data.artworks;
-      if (artworks) setArtworks(artworks);
-      else setError(error);
+      try {
+        const response = await axios.get(url);
+        setArtworks(artworks);
+      } catch (error) {
+        console.error(error);
+      }
     };
-
     fetchData();
   }, [url, artworks, error]);
 
