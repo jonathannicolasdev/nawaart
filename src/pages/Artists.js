@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Header from "../components/Header";
 import axios from "axios";
 import styled from "styled-components";
 
+import Header from "../components/Header";
 import { getToken } from "../utils/token";
 
 const ArtistsGallery = styled.div`
@@ -30,15 +30,12 @@ const Artists = () => {
   const [error, setError] = useState();
   const url = process.env.REACT_APP_API_URL + "/artists";
 
-  useEffect(() => {
-    axios
-      .get(url)
-      .then((response) => {
-        setArtists(response.data.artists);
-      })
-      .catch((error) => {
-        setError(error);
-      });
+  useEffect(async () => {
+    const response = await axios.get(url);
+    const artists = response.data.artists;
+
+    if (artists) setArtists(artists);
+    else setError(error);
   }, [url]);
 
   return (
@@ -48,16 +45,20 @@ const Artists = () => {
 
       {error && <span>{error}</span>}
       <ArtistsGallery>
-        {artists.map((artist, index) => {
-          return (
-            <ArtistCard key={index}>
-              <Link to={`/artists/${artist.slug}`}>
-                <ArtistImage src={artist.photo}></ArtistImage>
-              </Link>
-              <h3>{artist.name}</h3>
-            </ArtistCard>
-          );
-        })}
+        {artists.length > 0 ? (
+          artists.map((artist, index) => {
+            return (
+              <ArtistCard key={index}>
+                <Link to={`/artists/${artist.slug}`}>
+                  <ArtistImage src={artist.photo}></ArtistImage>
+                </Link>
+                <h3>{artist.name}</h3>
+              </ArtistCard>
+            );
+          })
+        ) : (
+          <div>No artists found</div>
+        )}
       </ArtistsGallery>
     </div>
   );
