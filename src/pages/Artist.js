@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import Header from "../components/Header";
-import artistsData from "../data/artists.json";
 
 const ArtistContainer = styled.div`
   width: 600px;
@@ -29,23 +30,41 @@ const ExhibitionsList = styled.ul`
   }
 `;
 
-const Artists = () => {
+const Artist = () => {
   const { slug } = useParams();
+  const [artist, setArtist] = useState({});
+  const url = process.env.REACT_APP_API_URL + `/artists/${slug}`;
 
-  const artists = artistsData.filter((artist) => artist.slug === slug);
-  const artist = artists[0];
-  // backend.com/api/artists/jonathan-nicolas
-  // { name: '', photo: '' }
+  useEffect(() => {
+    const fetchData = async () => {
+      const responseArtist = await axios.get(url);
+      if (responseArtist) {
+        setArtist(responseArtist.data.artist);
+        try {
+          await axios.get(responseArtist.data.artist.photo);
+        } catch (error) {
+          const artistName = responseArtist.data.artist.name
+            .split(" ")
+            .join("+");
+          const placeholderPhoto = `https://ui-avatars.com/api/?size=600&name=${artistName}`;
+          setArtist((state) => ({
+            ...state,
+            photo: placeholderPhoto,
+          }));
+        }
+      }
+    };
 
-  // const artworks = artworks
-  // backend.com/api/artists/jonathan-nicolas/artworks
+    fetchData();
+  }, [url]);
 
   return (
     <div>
       <Header></Header>
-      {artist ? (
+      {artist.name ? (
         <ArtistContainer>
           <ArtistImage src={artist.photo} alt={artist.name} />
+
           <h3>{artist.name}</h3>
 
           <div>
@@ -57,7 +76,7 @@ const Artists = () => {
             <h4>Exhibitions</h4>
             <ExhibitionsList>
               {artist.biography.exhibitions.map((item, index) => {
-                return <li>{item}</li>;
+                return <li key={index}>{item}</li>;
               })}
             </ExhibitionsList>
           </div>
@@ -69,4 +88,4 @@ const Artists = () => {
   );
 };
 
-export default Artists;
+export default Artist;
