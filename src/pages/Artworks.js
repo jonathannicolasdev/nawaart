@@ -7,8 +7,7 @@ import Header from "../components/Header";
 
 const ArtworksGallery = styled.div`
   display: flex;
-  width: 1200px;
-  /* margin: auto; */
+  flex-wrap: wrap;
 `;
 
 const ArtworkCard = styled.div`

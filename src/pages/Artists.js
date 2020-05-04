@@ -8,6 +8,7 @@ import { getToken } from "../utils/token";
 
 const ArtistsGallery = styled.div`
   display: flex;
+  flex-wrap: wrap;
 `;
 
 const ArtistCard = styled.div`
