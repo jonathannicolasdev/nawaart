@@ -37,6 +37,7 @@ const Artists = () => {
         const response = await axios.get(url);
         setArtists(response.data.artists);
       } catch (error) {
+        setError(error);
         console.error(error);
       }
     };

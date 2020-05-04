@@ -30,6 +30,7 @@ const Artworks = () => {
         const response = await axios.get(url);
         setArtworks(response.data.artworks);
       } catch (error) {
+        setError(error);
         console.error(error);
       }
     };
