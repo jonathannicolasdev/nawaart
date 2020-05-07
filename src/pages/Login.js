@@ -45,10 +45,9 @@ const Login = () => {
         email,
         password,
       });
-      console.log(response.data);
       setToken(response.data.token);
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   };
 

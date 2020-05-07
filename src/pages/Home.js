@@ -59,7 +59,6 @@ const HomePage = () => {
       const response = await axios.get(url);
       if (response) {
         setStories(response.data.stories);
-        console.log(response.data.stories);
       } else {
         setError("Error when getting stories");
       }

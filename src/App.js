@@ -11,8 +11,17 @@ import StoryPage from "./pages/Story";
 import AboutPage from "./pages/About";
 import LoginPage from "./pages/Login";
 import AddArtistPage from "./pages/AddArtist";
+import axios from "axios";
 
 class App extends Component {
+  componentDidMount() {
+    const url = process.env.REACT_APP_API_URL;
+    async function requestBackend() {
+      await axios.get(url);
+    }
+    requestBackend();
+  }
+
   render() {
     return (
       <BrowserRouter>

@@ -33,10 +33,6 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  console.log(name);
-  console.log(email);
-  console.log(password);
-
   const handleSubmit = async (event) => {
     try {
       event.preventDefault();
@@ -48,9 +44,8 @@ const Register = () => {
           password,
         }
       );
-      console.log(response);
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   };
 
