@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Header from "../components/Header";
 import axios from "axios";
+import dayjs from "dayjs";
 
 const Hero = styled.div`
   height: 100vh;
@@ -89,7 +90,7 @@ const HomePage = () => {
                 <Story key={index}>
                   <img src={story.image} alt={story.slug} />
                   <h3>{story.title}</h3>
-                  <p> {story.date}</p>
+                  <p> {dayjs(story.date).format("D MMMM YYYY")}</p>
                   <div
                     dangerouslySetInnerHTML={{
                       __html: story.content,
