@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
@@ -13,6 +14,7 @@ const ArtworkContainer = styled.div`
 const Artwork = () => {
   const { slug } = useParams();
   const [artwork, setArtwork] = useState({});
+  const [artist, setArtist] = useState({});
   const [error, setError] = useState();
   const url = process.env.REACT_APP_API_URL + `/artworks/${slug}`;
 
@@ -21,11 +23,14 @@ const Artwork = () => {
       .get(url)
       .then((response) => {
         setArtwork(response.data.artwork);
+        setArtist(response.data.artwork.artist);
       })
       .catch((error) => {
         setError(error);
       });
   }, [url]);
+
+  console.log(artist.name);
 
   return (
     <div>
@@ -37,6 +42,10 @@ const Artwork = () => {
             <div>
               <img src={artwork.image} alt="" />
               <h3>{artwork.title}</h3>
+              <Link to={`/artists/${artist.slug}`}>
+                <h4>{artist.name}</h4>
+              </Link>
+              <img src={artist.photo} />
             </div>
           ) : (
             <div>
