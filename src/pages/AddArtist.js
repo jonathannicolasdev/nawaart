@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { withRouter } from "react-router";
 import styled from "styled-components";
 import axios from "axios";
 import { getToken } from "../utils/token";
@@ -35,13 +36,13 @@ const TextArea = styled.textarea`
   height: 200px;
 `;
 
-const AddArtist = () => {
+const AddArtist = (props) => {
   const [artist, setArtist] = useState({
     name: "",
     photo: "",
     biography: {
       about: "",
-      exhibitions: ["this is the first exhibit"],
+      exhibitions: [""],
     },
   });
 
@@ -56,7 +57,7 @@ const AddArtist = () => {
         },
       });
       if (response.data.artist) {
-        // redirect to artists page after response is successful
+        props.history.push(`/artists/${response.data.artist.slug}`);
       }
     } catch (error) {
       console.error(error);
@@ -109,7 +110,26 @@ const AddArtist = () => {
               setArtist({
                 ...artist,
                 biography: {
+                  ...artist.biography,
                   about: event.target.value,
+                },
+              });
+            }}
+          />
+        </FormGroup>
+
+        <FormGroup>
+          <Label htmlFor="exhibitions">Exhibitions</Label>
+          <Input
+            type="text"
+            name="exhibitions"
+            value={artist.biography.exhibitions[0]}
+            onChange={(event) => {
+              setArtist({
+                ...artist,
+                biography: {
+                  ...artist.biography,
+                  exhibitions: [event.target.value],
                 },
               });
             }}
@@ -124,4 +144,4 @@ const AddArtist = () => {
   );
 };
 
-export default AddArtist;
+export default withRouter(AddArtist);
