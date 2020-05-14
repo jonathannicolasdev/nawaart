@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { withRouter } from "react-router";
 import { Redirect } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
@@ -32,7 +33,7 @@ const Input = styled.input`
   padding: 10px;
 `;
 
-const Login = () => {
+const Login = ({ history }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -46,6 +47,7 @@ const Login = () => {
         password,
       });
       setToken(response.data.token);
+      history.push("/");
     } catch (e) {
       console.error(e);
     }
@@ -91,4 +93,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default withRouter(Login);
