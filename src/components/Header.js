@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
+import { getToken, logout } from "../utils/token";
 
 const HeaderStyled = styled.header`
   display: flex;
@@ -23,6 +25,7 @@ const Links = styled.ul`
   text-transform: uppercase;
   li {
     margin: 0 20px;
+    cursor: pointer;
   }
   a {
     color: black;
@@ -30,7 +33,7 @@ const Links = styled.ul`
   }
 `;
 
-const Header = () => {
+const Header = (props) => {
   return (
     <HeaderStyled>
       <Link to="/">
@@ -50,10 +53,15 @@ const Header = () => {
           <li>
             <Link to="/about">About</Link>
           </li>
+          {getToken() && (
+            <li>
+              <span onClick={() => logout(props)}>Logout</span>
+            </li>
+          )}
         </Links>
       </Navigation>
     </HeaderStyled>
   );
 };
 
-export default Header;
+export default withRouter(Header);

@@ -17,3 +17,8 @@ export const setToken = (token) => {
     console.error(error);
   }
 };
+
+export const logout = (props) => {
+  localStorage.clear("token");
+  props.history.push("/");
+};
