@@ -91,7 +91,7 @@ const AddArtist = (props) => {
             name="photo"
             type="text"
             placeholder="https://example.com/photo.jpg"
-            value={artist.photo}
+            value={artist.photoUrl}
             onChange={(event) => {
               setArtist({
                 ...artist,

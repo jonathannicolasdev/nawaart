@@ -36,14 +36,11 @@ const Register = () => {
   const handleSubmit = async (event) => {
     try {
       event.preventDefault();
-      const response = await axios.post(
-        "https://nawaart.herokuapp.com/users/register",
-        {
-          name,
-          email,
-          password,
-        }
-      );
+      await axios.post("https://nawaart.herokuapp.com/users/register", {
+        name,
+        email,
+        password,
+      });
     } catch (e) {
       console.error(e);
     }

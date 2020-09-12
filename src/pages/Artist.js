@@ -41,7 +41,7 @@ const Artist = () => {
       if (responseArtist) {
         setArtist(responseArtist.data.artist);
         try {
-          await axios.get(responseArtist.data.artist.photo);
+          await axios.get(responseArtist.data.artist.photoUrl);
         } catch (error) {
           const artistName = responseArtist.data.artist.name
             .split(" ")
@@ -63,7 +63,7 @@ const Artist = () => {
       <Header></Header>
       {artist.name ? (
         <ArtistContainer>
-          <ArtistImage src={artist.photo} alt={artist.name} />
+          <ArtistImage src={artist.photoUrl} alt={artist.name} />
 
           <h3>{artist.name}</h3>
 

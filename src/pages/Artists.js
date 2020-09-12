@@ -55,7 +55,7 @@ const Artists = () => {
             return (
               <ArtistCard key={index}>
                 <Link to={`/artists/${artist.slug}`}>
-                  <ArtistImage src={artist.photo}></ArtistImage>
+                  <ArtistImage src={artist.photoUrl}></ArtistImage>
                 </Link>
                 <h3>{artist.name}</h3>
               </ArtistCard>

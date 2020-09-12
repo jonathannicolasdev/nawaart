@@ -61,6 +61,7 @@ const HomePage = () => {
         setStories(response.data.stories);
       } else {
         setError("Error when getting stories");
+        console.log(error);
       }
     };
     fetchData();
@@ -73,8 +74,8 @@ const HomePage = () => {
         <HeroDetails>
           <h2>Billy Childish</h2>
           <p>
-            remember all the / high and exalted things remember all the low /
-            and broken things
+            remember all the / high and exalted thingsremember all the low / and
+            broken things
           </p>
           <p>New York, W 22nd Street</p>
           <p>January 23 - March 21, 2020</p>
