@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Header from "../components/Header";
 import styled from "styled-components";
-import storiesData from "../data/stories.json";
+import axios from "axios";
+
+import Header from "../components/Header";
 
 const StoriesContainer = styled.div`
   margin: 10px;
@@ -26,16 +27,39 @@ const StoryContainer = styled.div`
   }
 `;
 
+const StoryImage = styled.img`
+  object-fit: cover;
+`;
+
 const Stories = () => {
+  const [stories, setStories] = useState([]);
+  const [error, setError] = useState();
+  const url = process.env.REACT_APP_API_URL + "/stories";
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await axios.get(url);
+      if (response) {
+        setStories(response.data.stories);
+      } else {
+        setError("Error when getting stories");
+        console.error(error);
+      }
+    };
+    fetchData();
+  }, [url, error]);
+
   return (
     <div>
       <Header></Header>
       <StoriesContainer>
-        {storiesData.map((story, index) => {
+        {stories.map((story, index) => {
+          console.log(story);
+
           return (
             <StoryContainer key={index}>
-              <img src={story.image} alt={story.title}></img>
               <Link to={`/stories/${story.slug}`}>
+                <StoryImage src={story.imageUrl} alt={story.title}></StoryImage>
                 <h2>{story.title}</h2>
               </Link>
             </StoryContainer>

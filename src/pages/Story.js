@@ -1,8 +1,9 @@
-import React from "react";
-import Header from "../components/Header";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import storiesData from "../data/stories.json";
+import axios from "axios";
+
+import Header from "../components/Header";
 
 const StoryContainer = styled.div`
   display: flex;
@@ -11,6 +12,7 @@ const StoryContainer = styled.div`
   width: 800px;
   margin: auto;
   img {
+    object-fit: cover;
     width: 400px;
     height: 400px;
   }
@@ -18,18 +20,32 @@ const StoryContainer = styled.div`
 
 const Story = () => {
   const { slug } = useParams();
-  const story = storiesData.filter((story) => {
-    return story.slug === slug;
-  })[0];
+  const [story, setStory] = useState({});
+  const [error, setError] = useState();
+  const url = process.env.REACT_APP_API_URL + `/stories/${slug}`;
+
+  useEffect(() => {
+    axios
+      .get(url)
+      .then((response) => {
+        setStory(response.data.story);
+      })
+      .catch((error) => {
+        setError(error);
+      });
+  }, [url, error]);
 
   return (
     <div>
       <Header></Header>
-      <StoryContainer>
-        <img src={story.image} alt="" />
-        <h2>{story.title}</h2>
-        <div dangerouslySetInnerHTML={{ __html: story.content }} />
-      </StoryContainer>
+      {error && <p>{error}</p>}
+      {!error && (
+        <StoryContainer>
+          <img src={story.imageUrl} alt="" />
+          <h2>{story.title}</h2>
+          <div dangerouslySetInnerHTML={{ __html: story.content }} />
+        </StoryContainer>
+      )}
     </div>
   );
 };

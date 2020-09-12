@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -47,7 +47,7 @@ const Artworks = () => {
             return (
               <ArtworkCard key={index}>
                 <Link to={`/artworks/${artwork.slug}`}>
-                  <img src={artwork.image} alt={artwork.title} />
+                  <img src={artwork.imageUrl} alt={artwork.title} />
                 </Link>
                 <h3>{artwork.title}</h3>
               </ArtworkCard>

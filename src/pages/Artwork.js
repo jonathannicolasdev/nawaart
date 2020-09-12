@@ -40,12 +40,12 @@ const Artwork = () => {
         <ArtworkContainer>
           {artwork ? (
             <div>
-              <img src={artwork.image} alt={artwork.title} />
+              <img src={artwork.imageUrl} alt={artwork.title} />
               <h3>{artwork.title}</h3>
               <Link to={`/artists/${artist.slug}`}>
                 <h4>{artist.name}</h4>
               </Link>
-              <img src={artist.photoUrl} />
+              <img src={artist.photoUrl} alt={artist.name} />
             </div>
           ) : (
             <div>

@@ -65,7 +65,7 @@ const HomePage = () => {
       }
     };
     fetchData();
-  }, [url]);
+  }, [url, error]);
 
   return (
     <div>
@@ -88,7 +88,7 @@ const HomePage = () => {
             stories.map((story, index) => {
               return (
                 <Story key={index}>
-                  <img src={story.image} alt={story.slug} />
+                  <img src={story.imageUrl} alt={story.slug} />
                   <h3>{story.title}</h3>
                   <p> {dayjs(story.date).format("D MMMM YYYY")}</p>
                   <div
