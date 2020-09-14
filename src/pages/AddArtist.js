@@ -47,7 +47,7 @@ const TextArea = styled.textarea`
 const AddArtist = (props) => {
   const [artist, setArtist] = useState({
     name: "",
-    photoUrl: "",
+    photo: null,
     biography: {
       about: "",
       exhibitions: [""],
@@ -59,10 +59,16 @@ const AddArtist = (props) => {
   const handleSubmit = async (event) => {
     try {
       event.preventDefault();
-      console.log(url);
-      const response = await axios.post(url, artist, {
+      const body = new FormData();
+      body.append("name", artist.name);
+      body.append("photo", artist.photo);
+      body.append("about", artist.biography.about);
+      body.append("exhibitions", artist.biography.exhibitions);
+
+      const response = await axios.post(url, body, {
         headers: {
           Authorization: "Bearer " + getToken(),
+          "content-type": "multipart/form-data",
         },
       });
       if (response.data.artist) {
@@ -71,6 +77,13 @@ const AddArtist = (props) => {
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const onFileChange = (event) => {
+    setArtist({
+      ...artist,
+      photo: event.target.files[0],
+    });
   };
 
   return (
@@ -97,9 +110,13 @@ const AddArtist = (props) => {
         </FormGroup>
 
         <FormGroup>
-          <Label htmlFor="photoUrl">
+          <Label htmlFor="photo">
             <h3>Photo</h3>
           </Label>
+          <Input name="photo" type="file" onChange={onFileChange} />
+        </FormGroup>
+        {/* 
+        <FormGroup>
           <Input
             name="photoUrl"
             type="text"
@@ -112,7 +129,7 @@ const AddArtist = (props) => {
               });
             }}
           />
-        </FormGroup>
+        </FormGroup> */}
 
         <section>
           <h3>Biography</h3>
