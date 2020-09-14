@@ -26,6 +26,13 @@ const ArtistImage = styled.img`
   object-fit: cover;
 `;
 
+const LinkButton = styled(Link)`
+  background-color: #333333;
+  color: #ffffff;
+  padding: 10px 32px;
+  text-decoration: none;
+`;
+
 const Artists = () => {
   const [artists, setArtists] = useState([]);
   const [error, setError] = useState();
@@ -46,7 +53,7 @@ const Artists = () => {
   return (
     <div>
       <Header></Header>
-      {getToken() && <button>Add Artist</button>}
+      {getToken() && <LinkButton to="/artists/add">Add New Artist</LinkButton>}
 
       {error && <span>{error}</span>}
       <ArtistsGallery>
