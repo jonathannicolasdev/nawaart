@@ -47,7 +47,7 @@ const TextArea = styled.textarea`
 const AddArtist = (props) => {
   const [artist, setArtist] = useState({
     name: "",
-    photo: "",
+    photoUrl: "",
     biography: {
       about: "",
       exhibitions: [""],
@@ -59,6 +59,7 @@ const AddArtist = (props) => {
   const handleSubmit = async (event) => {
     try {
       event.preventDefault();
+      console.log(url);
       const response = await axios.post(url, artist, {
         headers: {
           Authorization: "Bearer " + getToken(),
@@ -96,18 +97,18 @@ const AddArtist = (props) => {
         </FormGroup>
 
         <FormGroup>
-          <Label htmlFor="photo">
+          <Label htmlFor="photoUrl">
             <h3>Photo</h3>
           </Label>
           <Input
-            name="photo"
+            name="photoUrl"
             type="text"
             placeholder="https://example.com/photo.jpg"
             value={artist.photoUrl}
             onChange={(event) => {
               setArtist({
                 ...artist,
-                photo: event.target.value,
+                photoUrl: event.target.value,
               });
             }}
           />
