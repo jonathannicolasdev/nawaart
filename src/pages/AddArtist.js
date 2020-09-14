@@ -59,11 +59,12 @@ const AddArtist = (props) => {
   const handleSubmit = async (event) => {
     try {
       event.preventDefault();
+
       const body = new FormData();
       body.append("name", artist.name);
       body.append("photo", artist.photo);
       body.append("about", artist.biography.about);
-      body.append("exhibitions", artist.biography.exhibitions);
+      body.append("exhibitions", JSON.stringify(artist.biography.exhibitions));
 
       const response = await axios.post(url, body, {
         headers: {
@@ -115,21 +116,6 @@ const AddArtist = (props) => {
           </Label>
           <Input name="photo" type="file" onChange={onFileChange} />
         </FormGroup>
-        {/* 
-        <FormGroup>
-          <Input
-            name="photoUrl"
-            type="text"
-            placeholder="https://example.com/photo.jpg"
-            value={artist.photoUrl}
-            onChange={(event) => {
-              setArtist({
-                ...artist,
-                photoUrl: event.target.value,
-              });
-            }}
-          />
-        </FormGroup> */}
 
         <section>
           <h3>Biography</h3>
