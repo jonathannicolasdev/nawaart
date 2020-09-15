@@ -3,6 +3,7 @@ import { withRouter } from "react-router";
 import styled from "styled-components";
 import axios from "axios";
 import { getToken } from "../utils/token";
+import ExhibitionList from "../components/ExhibitionList";
 
 const FormContainer = styled.div`
   display: flex;
@@ -155,6 +156,8 @@ const AddArtist = (props) => {
             />
           </FormGroup>
         </section>
+
+        <ExhibitionList></ExhibitionList>
 
         <FormGroup>
           <Input type="submit" value="Add Artist" />
