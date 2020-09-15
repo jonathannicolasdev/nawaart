@@ -52,11 +52,12 @@ const ExhibitionsFormGroup = () => {
   };
 
   const handleRemove = (index) => {
-    const updatedExhibitions = exhibitions.filter(
-      (exhibition, exhibitionIndex) => index !== exhibitionIndex
-    );
-
-    setExhibitions(updatedExhibitions);
+    if (exhibitions.length > 1) {
+      const updatedExhibitions = exhibitions.filter(
+        (exhibition, exhibitionIndex) => index !== exhibitionIndex
+      );
+      setExhibitions(updatedExhibitions);
+    }
   };
 
   const handleEdit = () => {};
