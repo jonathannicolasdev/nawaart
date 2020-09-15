@@ -3,7 +3,8 @@ import { withRouter } from "react-router";
 import styled from "styled-components";
 import axios from "axios";
 import { getToken } from "../utils/token";
-import ExhibitionList from "../components/ExhibitionList";
+
+import ExhibitionsFormGroup from "../components/ExhibitionsFormGroup";
 
 const FormContainer = styled.div`
   display: flex;
@@ -138,26 +139,8 @@ const AddArtist = (props) => {
             />
           </FormGroup>
 
-          <FormGroup>
-            <SubLabel htmlFor="exhibitions">Exhibitions</SubLabel>
-            <Input
-              type="text"
-              name="exhibitions"
-              value={artist.biography.exhibitions[0]}
-              onChange={(event) => {
-                setArtist({
-                  ...artist,
-                  biography: {
-                    ...artist.biography,
-                    exhibitions: [event.target.value],
-                  },
-                });
-              }}
-            />
-          </FormGroup>
+          <ExhibitionsFormGroup />
         </section>
-
-        <ExhibitionList></ExhibitionList>
 
         <FormGroup>
           <Input type="submit" value="Add Artist" />
