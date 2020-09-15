@@ -59,29 +59,40 @@ const AddArtist = (props) => {
 
   const url = process.env.REACT_APP_API_URL + "/artists";
 
+  const handleSetExhibitions = (newExhibitions) => {
+    setArtist({
+      ...artist,
+      biography: {
+        ...artist.biography,
+        exhibitions: newExhibitions,
+      },
+    });
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // try {
+    try {
+      const body = new FormData();
 
-    //   const body = new FormData();
-    //   body.append("name", artist.name);
-    //   body.append("photo", artist.photo);
-    //   body.append("about", artist.biography.about);
-    //   body.append("exhibitions", JSON.stringify(artist.biography.exhibitions));
+      body.append("name", artist.name);
+      body.append("photo", artist.photo);
+      body.append("about", artist.biography.about);
+      body.append("exhibitions", JSON.stringify(artist.biography.exhibitions));
 
-    //   const response = await axios.post(url, body, {
-    //     headers: {
-    //       Authorization: "Bearer " + getToken(),
-    //       "content-type": "multipart/form-data",
-    //     },
-    //   });
-    //   if (response.data.artist) {
-    //     props.history.push(`/artists/${response.data.artist.slug}`);
-    //   }
-    // } catch (error) {
-    //   console.error(error);
-    // }
+      const response = await axios.post(url, body, {
+        headers: {
+          Authorization: "Bearer " + getToken(),
+          "content-type": "multipart/form-data",
+        },
+      });
+
+      if (response.data.artist) {
+        props.history.push(`/artists/${response.data.artist.slug}`);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const onFileChange = (event) => {
@@ -141,7 +152,10 @@ const AddArtist = (props) => {
             />
           </FormGroup>
 
-          <ExhibitionsFormGroup />
+          <ExhibitionsFormGroup
+            exhibitions={artist.biography.exhibitions}
+            setExhibitions={handleSetExhibitions}
+          />
         </section>
 
         <FormGroup>

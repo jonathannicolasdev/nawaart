@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
@@ -40,12 +40,7 @@ const Button = styled.button`
   margin-left: 10px;
 `;
 
-const ExhibitionsFormGroup = () => {
-  const [exhibitions, setExhibitions] = useState([
-    "2020 “Perupa Tua#1 Ring Road”, Sangkring Art Space, Yogyakarta",
-    "2018 “Perupa Muda#3 Ring Road”, Sangkring Art Space, Yogyakarta",
-  ]);
-
+const ExhibitionsFormGroup = ({ exhibitions, setExhibitions }) => {
   const handleAdd = () => {
     const updatedExhibitions = exhibitions.concat("");
     setExhibitions(updatedExhibitions);
@@ -64,9 +59,7 @@ const ExhibitionsFormGroup = () => {
     const newExhibitionText = event.target.value;
     const updatedExhibitions = exhibitions.map(
       (exhibition, exhibitionIndex) => {
-        if (index === exhibitionIndex) {
-          return newExhibitionText;
-        }
+        return index === exhibitionIndex ? newExhibitionText : exhibition;
       }
     );
     setExhibitions(updatedExhibitions);
@@ -94,6 +87,9 @@ const ExhibitionsFormGroup = () => {
   );
 };
 
-// ExhibitionsFormGroup.propTypes = {};
+ExhibitionsFormGroup.propTypes = {
+  exhibitions: PropTypes.array.isRequired,
+  setExhibitions: PropTypes.func.isRequired,
+};
 
 export default ExhibitionsFormGroup;
