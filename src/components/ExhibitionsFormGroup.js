@@ -46,6 +46,10 @@ const ExhibitionsFormGroup = () => {
     "2018 “Perupa Muda#3 Ring Road”, Sangkring Art Space, Yogyakarta",
   ]);
 
+  const handleAdd = () => {
+    setExhibitions(exhibitions.concat(""));
+  };
+
   return (
     <FormGroup>
       <SubLabel>Exhibitions</SubLabel>
@@ -55,7 +59,7 @@ const ExhibitionsFormGroup = () => {
             <ExhibitionItem key={index}>
               <Input type="text" value={exhibition} />
               <Button>{"-"}</Button>
-              <Button>{"+"}</Button>
+              <Button onClick={handleAdd}>{"+"}</Button>
             </ExhibitionItem>
           );
         })}
