@@ -11,6 +11,7 @@ const FormContainer = styled.div`
   flex-direction: column;
   align-items: center;
   margin-top: 100px;
+  margin-bottom: 500px;
 `;
 
 const Form = styled.form`
@@ -59,27 +60,28 @@ const AddArtist = (props) => {
   const url = process.env.REACT_APP_API_URL + "/artists";
 
   const handleSubmit = async (event) => {
-    try {
-      event.preventDefault();
+    event.preventDefault();
 
-      const body = new FormData();
-      body.append("name", artist.name);
-      body.append("photo", artist.photo);
-      body.append("about", artist.biography.about);
-      body.append("exhibitions", JSON.stringify(artist.biography.exhibitions));
+    // try {
 
-      const response = await axios.post(url, body, {
-        headers: {
-          Authorization: "Bearer " + getToken(),
-          "content-type": "multipart/form-data",
-        },
-      });
-      if (response.data.artist) {
-        props.history.push(`/artists/${response.data.artist.slug}`);
-      }
-    } catch (error) {
-      console.error(error);
-    }
+    //   const body = new FormData();
+    //   body.append("name", artist.name);
+    //   body.append("photo", artist.photo);
+    //   body.append("about", artist.biography.about);
+    //   body.append("exhibitions", JSON.stringify(artist.biography.exhibitions));
+
+    //   const response = await axios.post(url, body, {
+    //     headers: {
+    //       Authorization: "Bearer " + getToken(),
+    //       "content-type": "multipart/form-data",
+    //     },
+    //   });
+    //   if (response.data.artist) {
+    //     props.history.push(`/artists/${response.data.artist.slug}`);
+    //   }
+    // } catch (error) {
+    //   console.error(error);
+    // }
   };
 
   const onFileChange = (event) => {

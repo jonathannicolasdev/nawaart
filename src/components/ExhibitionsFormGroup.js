@@ -47,8 +47,19 @@ const ExhibitionsFormGroup = () => {
   ]);
 
   const handleAdd = () => {
-    setExhibitions(exhibitions.concat(""));
+    const updatedExhibitions = exhibitions.concat(" ");
+    setExhibitions(updatedExhibitions);
   };
+
+  const handleRemove = (index) => {
+    const updatedExhibitions = exhibitions.filter(
+      (exhibition, exhibitionIndex) => index !== exhibitionIndex
+    );
+
+    setExhibitions(updatedExhibitions);
+  };
+
+  const handleEdit = () => {};
 
   return (
     <FormGroup>
@@ -57,8 +68,8 @@ const ExhibitionsFormGroup = () => {
         {exhibitions.map((exhibition, index) => {
           return (
             <ExhibitionItem key={index}>
-              <Input type="text" value={exhibition} />
-              <Button>{"-"}</Button>
+              <Input type="text" value={exhibition} onChange={handleEdit} />
+              <Button onClick={() => handleRemove(index)}>{"-"}</Button>
               <Button onClick={handleAdd}>{"+"}</Button>
             </ExhibitionItem>
           );
