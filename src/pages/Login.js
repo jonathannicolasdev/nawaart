@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { withRouter } from "react-router";
 import { Redirect } from "react-router-dom";
 import styled from "styled-components";
-import axios from "axios";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
-import { getToken } from "../utils/token";
-import { setToken } from "../utils/token";
+import login from "../redux/actions/login";
 
 const FormContainer = styled.div`
   display: flex;
@@ -33,29 +32,18 @@ const Input = styled.input`
   padding: 10px;
 `;
 
-const Login = ({ history }) => {
+const Login = ({ isLoading, error, isAuthenticated, handleLogin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = async (event) => {
-    try {
-      event.preventDefault();
-
-      const url = process.env.REACT_APP_API_URL + `/users/login`;
-      const response = await axios.post(url, {
-        email,
-        password,
-      });
-      setToken(response.data.token);
-      history.push("/");
-    } catch (e) {
-      console.error(e);
-    }
+    event.preventDefault();
+    handleLogin({ email, password });
   };
 
   return (
     <React.Fragment>
-      {getToken() ? (
+      {isAuthenticated ? (
         <Redirect to="/" />
       ) : (
         <FormContainer>
@@ -84,8 +72,13 @@ const Login = ({ history }) => {
               />
             </FormGroup>
             <FormGroup>
-              <Input type="submit" value="Login" />
+              <Input
+                type="submit"
+                value={isLoading ? "Logging in..." : "Login"}
+                disable={isLoading}
+              />
             </FormGroup>
+            {error && <p>{JSON.stringify(error)}</p>}
           </Form>
         </FormContainer>
       )}
@@ -93,4 +86,23 @@ const Login = ({ history }) => {
   );
 };
 
-export default withRouter(Login);
+const mapStateToProps = (state) => ({
+  isLoading: state.auth.isLoading,
+  error: state.auth.error,
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    handleLogin: (user) => dispatch(login(user)),
+  };
+};
+
+Login.propTypes = {
+  isLoading: PropTypes.bool,
+  error: PropTypes.object,
+  isAuthenticated: PropTypes.bool,
+  handleLogin: PropTypes.func,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

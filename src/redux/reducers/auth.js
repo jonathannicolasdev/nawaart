@@ -20,7 +20,6 @@ const auth = (state = initialState, action) => {
         error: null,
         isAuthenticated: true,
         token: action.payload.token,
-        decodedToken: action.payload.decodedToken,
       };
     case "LOGIN_FAILURE":
       return {
