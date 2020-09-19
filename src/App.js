@@ -1,5 +1,8 @@
 import React, { Component } from "react";
+import { Provider } from "react-redux";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import axios from "axios";
+
 import HomePage from "./pages/Home";
 import ArtistsPage from "./pages/Artists";
 import ArtistPage from "./pages/Artist";
@@ -11,7 +14,7 @@ import StoryPage from "./pages/Story";
 import AboutPage from "./pages/About";
 import LoginPage from "./pages/Login";
 import AddArtistPage from "./pages/AddArtist";
-import axios from "axios";
+import store from "./redux/store";
 
 class App extends Component {
   componentDidMount() {
@@ -24,21 +27,23 @@ class App extends Component {
 
   render() {
     return (
-      <BrowserRouter>
-        <Switch>
-          <Route path="/" component={HomePage} exact />
-          <Route path="/about" component={AboutPage} exact />
-          <Route path="/artists/add" component={AddArtistPage} exact />
-          <Route path="/artists/:slug" component={ArtistPage} />
-          <Route path="/artists" component={ArtistsPage} />
-          <Route path="/artworks/:slug" component={ArtworkPage} />
-          <Route path="/artworks" component={ArtworksPage} />
-          <Route path="/stories/:slug" component={StoryPage}></Route>
-          <Route path="/stories" component={StoriesPage} />
-          <Route path="/register" component={RegisterPage} />
-          <Route path="/login" component={LoginPage} />
-        </Switch>
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Switch>
+            <Route path="/" component={HomePage} exact />
+            <Route path="/about" component={AboutPage} exact />
+            <Route path="/artists/add" component={AddArtistPage} exact />
+            <Route path="/artists/:slug" component={ArtistPage} />
+            <Route path="/artists" component={ArtistsPage} />
+            <Route path="/artworks/:slug" component={ArtworkPage} />
+            <Route path="/artworks" component={ArtworksPage} />
+            <Route path="/stories/:slug" component={StoryPage}></Route>
+            <Route path="/stories" component={StoriesPage} />
+            <Route path="/register" component={RegisterPage} />
+            <Route path="/login" component={LoginPage} />
+          </Switch>
+        </BrowserRouter>
+      </Provider>
     );
   }
 }
