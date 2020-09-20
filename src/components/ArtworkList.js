@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const ArtworkListContainer = styled.div`
   margin: 0 100px;
   display: block;
-  columns: 24rem;
+  columns: 20rem;
   gap: 2rem;
 `;
 
