@@ -29,7 +29,7 @@ const Artworks = ({ isLoading, artworks, handleGetArtworks }) => {
   return (
     <div>
       <Header></Header>
-      {isLoading && <div>Arworks loading...</div>}
+      {isLoading && <div>Loading artworks...</div>}
 
       {!isLoading && artworks && (
         <ArtworksGallery>
