@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 import Header from "../components/Header";
+import getArtworks from "../redux/actions/getArtworks";
 
 const ArtworksGallery = styled.div`
   display: flex;
@@ -19,46 +21,56 @@ const ArtworkCard = styled.div`
   }
 `;
 
-const Artworks = () => {
-  const [artworks, setArtworks] = useState([]);
-  const [error, setError] = useState();
-  const url = process.env.REACT_APP_API_URL + "/artworks";
-
+const Artworks = ({ isLoading, artworks, handleGetArtworks }) => {
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await axios.get(url);
-      if (response) {
-        setArtworks(response.data.artworks);
-      } else {
-        setError("Error when getting artworks");
-      }
-    };
-    fetchData();
-  }, [url]);
+    handleGetArtworks();
+  }, [handleGetArtworks]);
 
   return (
     <div>
       <Header></Header>
-      {error && <p>{error}</p>}
+      {isLoading && <div>Arworks loading...</div>}
 
-      <ArtworksGallery>
-        {artworks.length > 0 ? (
-          artworks.map((artwork, index) => {
-            return (
-              <ArtworkCard key={index}>
-                <Link to={`/artworks/${artwork.slug}`}>
-                  <img src={artwork.imageUrl} alt={artwork.title} />
-                </Link>
-                <h3>{artwork.title}</h3>
-              </ArtworkCard>
-            );
-          })
-        ) : (
-          <div>No artworks found</div>
-        )}
-      </ArtworksGallery>
+      {!isLoading && artworks && (
+        <ArtworksGallery>
+          {artworks.length > 0 ? (
+            artworks.map((artwork, index) => {
+              return (
+                <ArtworkCard key={index}>
+                  <Link to={`/artworks/${artwork.slug}`}>
+                    <img src={artwork.imageUrl} alt={artwork.title} />
+                  </Link>
+                  <h3>{artwork.title}</h3>
+                </ArtworkCard>
+              );
+            })
+          ) : (
+            <div>No artworks found</div>
+          )}
+        </ArtworksGallery>
+      )}
     </div>
   );
 };
 
-export default Artworks;
+Artworks.propTypes = {
+  isLoading: PropTypes.bool,
+  artworks: PropTypes.array,
+  handleGetArtworks: PropTypes.func,
+};
+
+const mapStateToProps = (state) => {
+  return {
+    isLoading: state.artworks.isLoading,
+    artworks: state.artworks.data,
+    isAuthenticated: state.auth.isAuthenticated,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    handleGetArtworks: () => dispatch(getArtworks()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Artworks);
