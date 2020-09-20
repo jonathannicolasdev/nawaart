@@ -6,21 +6,36 @@ import PropTypes from "prop-types";
 const ArtistListContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+`;
+
+const ArtistLink = styled(Link)`
+  text-decoration: none;
 `;
 
 const ArtistCard = styled.div`
-  width: 400px;
-  height: 400px;
+  position: relative;
+  text-align: center;
   margin: 50px;
-  h3 {
-    text-align: center;
-  }
+`;
+
+const ArtistName = styled.span`
+  font-size: 28px;
+  font-weight: bold;
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 const ArtistImage = styled.img`
-  width: 400px;
+  width: 300px;
   height: 300px;
+  border-radius: 300px;
   object-fit: cover;
+  filter: brightness(0.5);
 `;
 
 const ArtistList = ({ artists }) => {
@@ -29,12 +44,12 @@ const ArtistList = ({ artists }) => {
       {artists.length > 0 ? (
         artists.map((artist, index) => {
           return (
-            <ArtistCard key={index}>
-              <Link to={`/artists/${artist.slug}`}>
+            <ArtistLink to={`/artists/${artist.slug}`}>
+              <ArtistCard key={index}>
                 <ArtistImage src={artist.photoUrl}></ArtistImage>
-              </Link>
-              <h3>{artist.name}</h3>
-            </ArtistCard>
+                <ArtistName>{artist.name}</ArtistName>
+              </ArtistCard>
+            </ArtistLink>
           );
         })
       ) : (
