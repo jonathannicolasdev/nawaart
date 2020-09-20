@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { connect } from "react-redux";
@@ -46,9 +46,9 @@ const Artists = ({ isLoading, artists, isAuthenticated, handleGetArtists }) => {
         <LinkButton to="/artists/add">Add New Artist</LinkButton>
       )}
 
-      {isLoading && <p>Loading Artists...</p>}
+      {isLoading && <p>Loading artists...</p>}
 
-      {!isLoading && (
+      {!isLoading && artists && (
         <ArtistsGallery>
           {artists.length > 0 ? (
             artists.map((artist, index) => {
