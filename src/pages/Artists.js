@@ -5,27 +5,9 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 import Header from "../components/Header";
+import ArtistList from "../components/ArtistList";
+
 import getArtists from "../redux/actions/getArtists";
-
-const ArtistsGallery = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-`;
-
-const ArtistCard = styled.div`
-  width: 400px;
-  height: 400px;
-  margin: 50px;
-  h3 {
-    text-align: center;
-  }
-`;
-
-const ArtistImage = styled.img`
-  width: 400px;
-  height: 300px;
-  object-fit: cover;
-`;
 
 const LinkButton = styled(Link)`
   background-color: #333333;
@@ -42,30 +24,14 @@ const Artists = ({ isLoading, artists, isAuthenticated, handleGetArtists }) => {
   return (
     <div>
       <Header></Header>
+
       {isAuthenticated && (
         <LinkButton to="/artists/add">Add New Artist</LinkButton>
       )}
 
       {isLoading && <p>Loading artists...</p>}
 
-      {!isLoading && artists && (
-        <ArtistsGallery>
-          {artists.length > 0 ? (
-            artists.map((artist, index) => {
-              return (
-                <ArtistCard key={index}>
-                  <Link to={`/artists/${artist.slug}`}>
-                    <ArtistImage src={artist.photoUrl}></ArtistImage>
-                  </Link>
-                  <h3>{artist.name}</h3>
-                </ArtistCard>
-              );
-            })
-          ) : (
-            <div>No artists found</div>
-          )}
-        </ArtistsGallery>
-      )}
+      {!isLoading && artists && <ArtistList artists={artists} />}
     </div>
   );
 };
@@ -73,6 +39,7 @@ const Artists = ({ isLoading, artists, isAuthenticated, handleGetArtists }) => {
 Artists.propTypes = {
   isLoading: PropTypes.bool,
   artists: PropTypes.array,
+  isAuthenticated: PropTypes.bool,
   handleGetArtists: PropTypes.func,
 };
 
