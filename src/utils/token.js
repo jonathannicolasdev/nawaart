@@ -18,7 +18,6 @@ export const setToken = (token) => {
   }
 };
 
-export const logout = (props) => {
+export const removeToken = () => {
   localStorage.clear("token");
-  props.history.push("/");
 };

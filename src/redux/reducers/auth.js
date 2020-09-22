@@ -1,7 +1,10 @@
+import { getToken } from "../../utils/token";
+
 const initialState = {
   isLoading: false,
   error: null,
   data: null,
+  isAuthenticated: getToken() ? true : false,
 };
 
 const auth = (state = initialState, action) => {
@@ -28,9 +31,19 @@ const auth = (state = initialState, action) => {
         data: null,
         error: action.payload,
       };
-    case "LOGOUT":
+    case "LOGOUT_START":
       return {
-        ...initialState,
+        ...state,
+      };
+    case "LOGOUT_SUCCESS":
+      return {
+        ...state,
+        isAuthenticated: false,
+        token: null,
+      };
+    case "LOGOUT_FAILURE":
+      return {
+        ...state,
       };
     default:
       return state;

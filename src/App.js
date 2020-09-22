@@ -14,6 +14,8 @@ import StoryPage from "./pages/Story";
 import AboutPage from "./pages/About";
 import LoginPage from "./pages/Login";
 import AddArtistPage from "./pages/AddArtist";
+import AddArtworkPage from "./pages/AddArtwork";
+
 import store from "./redux/store";
 
 class App extends Component {
@@ -35,6 +37,7 @@ class App extends Component {
             <Route path="/artists/add" component={AddArtistPage} exact />
             <Route path="/artists/:slug" component={ArtistPage} />
             <Route path="/artists" component={ArtistsPage} />
+            <Route path="/artworks/add" component={AddArtworkPage} exact />
             <Route path="/artworks/:slug" component={ArtworkPage} />
             <Route path="/artworks" component={ArtworksPage} />
             <Route path="/stories/:slug" component={StoryPage}></Route>

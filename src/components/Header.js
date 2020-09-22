@@ -1,8 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
-import { getToken, logout } from "../utils/token";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+
+import logout from "../redux/actions/logout";
 
 const HeaderStyled = styled.header`
   display: flex;
@@ -33,7 +35,7 @@ const Links = styled.ul`
   }
 `;
 
-const Header = (props) => {
+const Header = ({ isAuthenticated, handleLogout }) => {
   return (
     <HeaderStyled>
       <Link to="/">
@@ -53,9 +55,9 @@ const Header = (props) => {
           <li>
             <Link to="/about">About</Link>
           </li>
-          {getToken() && (
+          {isAuthenticated && (
             <li>
-              <span onClick={() => logout(props)}>Logout</span>
+              <span onClick={() => handleLogout()}>Logout</span>
             </li>
           )}
         </Links>
@@ -64,4 +66,19 @@ const Header = (props) => {
   );
 };
 
-export default withRouter(Header);
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    handleLogout: () => dispatch(logout()),
+  };
+};
+
+Header.propTypes = {
+  isAuthenticated: PropTypes.bool,
+  handleLogin: PropTypes.func,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
