@@ -31,7 +31,7 @@ const AddArtwork = ({
       });
       setOptions(newOptions);
     }
-  }, [handleGetArtists]);
+  }, [handleGetArtists, artists]);
 
   return (
     <div>
