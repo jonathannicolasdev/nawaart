@@ -11,11 +11,31 @@ const ArtworkContainer = styled.div`
   justify-content: center;
 `;
 
+const ArtworkSection = styled.section`
+  margin-bottom: 100px;
+`;
+
+const ArtworkImage = styled.img`
+  max-width: 720px;
+`;
+
+const ArtistLink = styled(Link)`
+  text-decoration: none;
+`;
+
+const ArtistPhoto = styled.img`
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 200px;
+`;
+
 const Artwork = () => {
   const { slug } = useParams();
   const [artwork, setArtwork] = useState({});
   const [artist, setArtist] = useState({});
   const [error, setError] = useState();
+
   const url = process.env.REACT_APP_API_URL + `/artworks/${slug}`;
 
   useEffect(() => {
@@ -33,17 +53,22 @@ const Artwork = () => {
   return (
     <div>
       <Header></Header>
+
       {error && <p>{error}</p>}
+
       {!error && (
         <ArtworkContainer>
           {artwork ? (
             <div>
-              <img src={artwork.imageUrl} alt={artwork.title} />
-              <h3>{artwork.title}</h3>
-              <Link to={`/artists/${artist.slug}`}>
-                <h4>{artist.name}</h4>
-              </Link>
-              <img src={artist.photoUrl} alt={artist.name} />
+              <ArtworkSection>
+                <ArtworkImage src={artwork.imageUrl} alt={artwork.title} />
+                <h3>{artwork.title}</h3>
+              </ArtworkSection>
+
+              <ArtistLink to={`/artists/${artist.slug}`}>
+                <ArtistPhoto src={artist.photoUrl} alt={artist.name} />
+                <h3>{artist.name}</h3>
+              </ArtistLink>
             </div>
           ) : (
             <div>
