@@ -7,21 +7,20 @@ import Select from "react-select";
 import { getToken } from "../utils/token";
 
 const FormContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 100px;
   margin-bottom: 500px;
+  width: 720px;
+  margin: 0 auto;
 `;
 
 const Form = styled.form`
-  width: 900px;
+  width: 720px;
 `;
 
 const FormGroup = styled.div`
+  margin: 20px 0px;
+  width: 720px;
   display: flex;
   flex-direction: column;
-  margin: 20px 0px;
 `;
 
 const Label = styled.label`
@@ -32,8 +31,13 @@ const Label = styled.label`
 `;
 
 const Input = styled.input`
-  font-size: 1.5rem;
   padding: 10px;
+`;
+
+const SelectStyled = styled(Select)`
+  border: 1px solid black;
+  border-radius: 5px;
+  font-size: 1.5rem;
 `;
 
 const AddArtwork = ({ history, options }) => {
@@ -78,17 +82,24 @@ const AddArtwork = ({ history, options }) => {
   return (
     <FormContainer>
       <h1>Add New Artwork</h1>
+
       <FormGroup>
         <Label htmlFor="artist">
-          <h3>Artist</h3>
+          <h3>Select Artist</h3>
         </Label>
-        {options.length > 0 && <Select name="artist" options={options} />}
+        {options.length > 0 && (
+          <SelectStyled
+            name="artist"
+            options={options}
+            placeholder="Select Artist"
+          />
+        )}
       </FormGroup>
 
       <Form onSubmit={handleSubmit}>
         <FormGroup>
           <Label htmlFor="title">
-            <h3>Title</h3>
+            <h3>Artwork Title</h3>
           </Label>
           <Input
             name="title"

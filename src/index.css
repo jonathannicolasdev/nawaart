@@ -9,3 +9,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+input {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 10;
+  font-size: 1.5rem;
+}

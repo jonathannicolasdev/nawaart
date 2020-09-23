@@ -42,9 +42,7 @@ const AddArtwork = ({
 
       {isLoading && <p>Loading artists...</p>}
 
-      {!isLoading && artists && <div>Add Artwork Form</div>}
-
-      <AddArtworkForm options={options}></AddArtworkForm>
+      {!isLoading && artists && <AddArtworkForm options={options} />}
     </div>
   );
 };
