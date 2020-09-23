@@ -5,6 +5,7 @@ import Select from "react-select";
 
 import Header from "../components/Header";
 import getArtists from "../redux/actions/getArtists";
+import AddArtworkForm from "../components/AddArtworkForm";
 
 // const options = [
 //   { value: 'chocolate', label: 'Chocolate' },
@@ -45,6 +46,7 @@ const AddArtwork = ({
       {!isLoading && artists && <div>Add Artwork Form</div>}
 
       {options.length > 0 && <Select options={options} />}
+      <AddArtworkForm></AddArtworkForm>
     </div>
   );
 };
