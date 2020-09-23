@@ -21,7 +21,10 @@ const AddArtwork = ({
   const [options, setOptions] = useState([]);
 
   useEffect(() => {
-    handleGetArtists();
+    if (!artists) {
+      handleGetArtists();
+    }
+
     if (artists && artists.length > 0) {
       const newOptions = artists.map((artist) => {
         return {
