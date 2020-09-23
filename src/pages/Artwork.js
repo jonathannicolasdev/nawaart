@@ -30,8 +30,6 @@ const Artwork = () => {
       });
   }, [url]);
 
-  console.log(artist.name);
-
   return (
     <div>
       <Header></Header>

@@ -54,8 +54,6 @@ const Stories = () => {
       <Header></Header>
       <StoriesContainer>
         {stories.map((story, index) => {
-          console.log(story);
-
           return (
             <StoryContainer key={index}>
               <Link to={`/stories/${story.slug}`}>

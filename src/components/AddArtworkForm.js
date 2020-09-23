@@ -42,9 +42,9 @@ const SelectStyled = styled(Select)`
 
 const AddArtwork = ({ history, options }) => {
   const [artwork, setArtwork] = useState({
+    artistId: "",
     title: "",
     image: "",
-    artistId: "",
   });
 
   const url = process.env.REACT_APP_API_URL + "/artworks";
@@ -53,21 +53,25 @@ const AddArtwork = ({ history, options }) => {
     event.preventDefault();
 
     try {
-      const body = new FormData();
+      if (artwork.artistId && artwork.title && artwork.image) {
+        const body = new FormData();
 
-      body.append("title", artwork.title);
-      body.append("image", artwork.image);
-      body.append("artistId", artwork.artistId);
+        body.append("artistId", artwork.artistId);
+        body.append("title", artwork.title);
+        body.append("image", artwork.image);
 
-      const response = await axios.post(url, body, {
-        headers: {
-          Authorization: "Bearer " + getToken(),
-          "content-type": "multipart/form-data",
-        },
-      });
+        const response = await axios.post(url, body, {
+          headers: {
+            Authorization: "Bearer " + getToken(),
+            "content-type": "multipart/form-data",
+          },
+        });
 
-      if (response.data.artwork) {
-        history.push(`/artworks/${response.data.artwork.slug}`);
+        if (response.data.artwork) {
+          history.push(`/artworks/${response.data.artwork.slug}`);
+        }
+      } else {
+        console.error("You need the artist, title, image");
       }
     } catch (error) {
       console.error(error);
@@ -77,7 +81,7 @@ const AddArtwork = ({ history, options }) => {
   const onFileChange = (event) => {
     setArtwork({
       ...artwork,
-      photo: event.target.files[0],
+      image: event.target.files[0],
     });
   };
 
@@ -115,6 +119,7 @@ const AddArtwork = ({ history, options }) => {
             name="title"
             type="text"
             placeholder="Artwork Title"
+            required
             value={artwork.title}
             onChange={(event) => {
               setArtwork({
@@ -129,7 +134,7 @@ const AddArtwork = ({ history, options }) => {
           <Label htmlFor="image">
             <h3>Image</h3>
           </Label>
-          <Input name="image" type="file" onChange={onFileChange} />
+          <Input name="image" type="file" onChange={onFileChange} required />
         </FormGroup>
 
         <FormGroup>

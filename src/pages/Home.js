@@ -61,7 +61,7 @@ const HomePage = () => {
         setStories(response.data.stories);
       } else {
         setError("Error when getting stories");
-        console.log(error);
+        console.error(error);
       }
     };
     fetchData();

@@ -42,8 +42,9 @@ export default class ExhibitionList extends Component {
 
   addExhibit = (e) => {
     e.preventDefault();
+
     const newExhibit = this.state.currentExhibit;
-    console.log(newExhibit);
+
     if (newExhibit.text !== "") {
       const newExhibits = [...this.state.exhibits, newExhibit];
       this.setState({
