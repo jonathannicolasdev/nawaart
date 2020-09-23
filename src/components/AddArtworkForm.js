@@ -55,7 +55,7 @@ const AddArtwork = ({ history, options }) => {
     try {
       const body = new FormData();
 
-      body.append("name", artwork.name);
+      body.append("title", artwork.title);
       body.append("image", artwork.image);
       body.append("artistId", artwork.artistId);
 
