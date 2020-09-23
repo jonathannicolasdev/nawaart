@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import Select from "react-select";
 
 import Header from "../components/Header";
 import getArtists from "../redux/actions/getArtists";
@@ -45,8 +44,7 @@ const AddArtwork = ({
 
       {!isLoading && artists && <div>Add Artwork Form</div>}
 
-      {options.length > 0 && <Select options={options} />}
-      <AddArtworkForm></AddArtworkForm>
+      <AddArtworkForm options={options}></AddArtworkForm>
     </div>
   );
 };

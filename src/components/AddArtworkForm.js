@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { withRouter } from "react-router";
 import styled from "styled-components";
 import axios from "axios";
+import Select from "react-select";
+
 import { getToken } from "../utils/token";
 
 const FormContainer = styled.div`
@@ -34,7 +36,7 @@ const Input = styled.input`
   padding: 10px;
 `;
 
-const AddArtwork = (props) => {
+const AddArtwork = ({ history, options }) => {
   const [artwork, setArtwork] = useState({
     name: "",
     image: null,
@@ -59,7 +61,7 @@ const AddArtwork = (props) => {
       });
 
       if (response.data.artwork) {
-        props.history.push(`/artworks/${response.data.artwork.slug}`);
+        history.push(`/artworks/${response.data.artwork.slug}`);
       }
     } catch (error) {
       console.error(error);
@@ -76,21 +78,27 @@ const AddArtwork = (props) => {
   return (
     <FormContainer>
       <h1>Add New Artwork</h1>
+      <FormGroup>
+        <Label htmlFor="artist">
+          <h3>Artist</h3>
+        </Label>
+        {options.length > 0 && <Select name="artist" options={options} />}
+      </FormGroup>
 
       <Form onSubmit={handleSubmit}>
         <FormGroup>
-          <Label htmlFor="name">
-            <h3>Name</h3>
+          <Label htmlFor="title">
+            <h3>Title</h3>
           </Label>
           <Input
-            name="name"
+            name="title"
             type="text"
-            placeholder="Artwork Name"
-            value={artwork.name}
+            placeholder="Artwork Title"
+            value={artwork.title}
             onChange={(event) => {
               setArtwork({
                 ...artwork,
-                name: event.target.value,
+                title: event.target.value,
               });
             }}
           />
@@ -98,7 +106,7 @@ const AddArtwork = (props) => {
 
         <FormGroup>
           <Label htmlFor="image">
-            <h3>Photo</h3>
+            <h3>Image</h3>
           </Label>
           <Input name="image" type="file" onChange={onFileChange} />
         </FormGroup>
