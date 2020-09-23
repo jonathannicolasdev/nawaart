@@ -42,8 +42,9 @@ const SelectStyled = styled(Select)`
 
 const AddArtwork = ({ history, options }) => {
   const [artwork, setArtwork] = useState({
-    name: "",
-    image: null,
+    title: "",
+    image: "",
+    artistId: "",
   });
 
   const url = process.env.REACT_APP_API_URL + "/artworks";
@@ -56,6 +57,7 @@ const AddArtwork = ({ history, options }) => {
 
       body.append("name", artwork.name);
       body.append("image", artwork.image);
+      body.append("artistId", artwork.artistId);
 
       const response = await axios.post(url, body, {
         headers: {
@@ -79,6 +81,13 @@ const AddArtwork = ({ history, options }) => {
     });
   };
 
+  const handleSelectArtist = (event) => {
+    setArtwork({
+      ...artwork,
+      artistId: event.value,
+    });
+  };
+
   return (
     <FormContainer>
       <h1>Add New Artwork</h1>
@@ -92,6 +101,7 @@ const AddArtwork = ({ history, options }) => {
             name="artist"
             options={options}
             placeholder="Select Artist"
+            onChange={handleSelectArtist}
           />
         )}
       </FormGroup>
