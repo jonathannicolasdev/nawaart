@@ -20,7 +20,6 @@ const ArtistImage = styled.img`
   object-fit: cover;
 `;
 
-// should be ul, not div
 const ExhibitionsList = styled.ul`
   list-style: none;
   padding: 0;
@@ -28,6 +27,8 @@ const ExhibitionsList = styled.ul`
     margin: 20px 0px;
   }
 `;
+
+const ArtworksList = styled.div``;
 
 const ArtistProfile = ({ artist }) => {
   return (
@@ -44,10 +45,19 @@ const ArtistProfile = ({ artist }) => {
       <div>
         <h4>Exhibitions</h4>
         <ExhibitionsList>
-          {artist.biography.exhibitions.map((item, index) => {
-            return <li key={index}>{item}</li>;
+          {artist.biography.exhibitions.map((exhibition, index) => {
+            return <li key={index}>{exhibition}</li>;
           })}
         </ExhibitionsList>
+      </div>
+
+      <div>
+        <h4>Artworks</h4>
+        <ArtworksList>
+          {artist.artworks.map((artwork, index) => {
+            return <img src={artwork.imageUrl} key={index} />;
+          })}
+        </ArtworksList>
       </div>
     </ArtistContainer>
   );
