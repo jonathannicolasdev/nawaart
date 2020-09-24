@@ -63,6 +63,9 @@ const Artwork = () => {
               <ArtworkSection>
                 <ArtworkImage src={artwork.imageUrl} alt={artwork.title} />
                 <h3>{artwork.title}</h3>
+                <span>{artwork.year}</span>
+                <span>{artwork.dimensions}</span>
+                <span>{artwork.country}</span>
               </ArtworkSection>
 
               <ArtistLink to={`/artists/${artist.slug}`}>

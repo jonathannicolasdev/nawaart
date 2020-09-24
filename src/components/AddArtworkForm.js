@@ -45,6 +45,9 @@ const AddArtwork = ({ history, options }) => {
     artistId: "",
     title: "",
     image: "",
+    year: 2000,
+    country: "",
+    dimensions: "",
   });
 
   const url = process.env.REACT_APP_API_URL + "/artworks";
@@ -53,12 +56,21 @@ const AddArtwork = ({ history, options }) => {
     event.preventDefault();
 
     try {
-      if (artwork.artistId && artwork.title && artwork.image) {
+      if (
+        artwork.artistId &&
+        artwork.title &&
+        artwork.image &&
+        artwork.country &&
+        artwork.year
+      ) {
         const body = new FormData();
 
         body.append("artistId", artwork.artistId);
         body.append("title", artwork.title);
         body.append("image", artwork.image);
+        body.append("country", artwork.country);
+        body.append("dimensions", artwork.dimensions);
+        body.append("year", artwork.year);
 
         const response = await axios.post(url, body, {
           headers: {
@@ -138,7 +150,63 @@ const AddArtwork = ({ history, options }) => {
         </FormGroup>
 
         <FormGroup>
-          <Input type="submit" value="Add Artist" />
+          <Label htmlFor="year">
+            <h3>Year</h3>
+          </Label>
+          <Input
+            name="year"
+            type="number"
+            placeholder="2020"
+            required
+            value={artwork.year}
+            onChange={(event) => {
+              setArtwork({
+                ...artwork,
+                year: event.target.value,
+              });
+            }}
+          />
+        </FormGroup>
+
+        <FormGroup>
+          <Label htmlFor="dimensions">
+            <h3>Dimensions</h3>
+          </Label>
+          <Input
+            name="dimensions"
+            type="text"
+            placeholder="24cm x 24cm"
+            value={artwork.dimensions}
+            onChange={(event) => {
+              setArtwork({
+                ...artwork,
+                dimensions: event.target.value,
+              });
+            }}
+          />
+        </FormGroup>
+
+        <FormGroup>
+          <Label htmlFor="country">
+            <h3>Country</h3>
+          </Label>
+          <Input
+            name="country"
+            type="text"
+            placeholder="Country"
+            required
+            value={artwork.country}
+            onChange={(event) => {
+              setArtwork({
+                ...artwork,
+                country: event.target.value,
+              });
+            }}
+          />
+        </FormGroup>
+
+        <FormGroup>
+          <Input type="submit" value="Add Artwork" />
         </FormGroup>
       </Form>
     </FormContainer>
