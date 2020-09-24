@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+
 import ArtworkList from "./ArtworkList";
 
 const ArtistContainer = styled.div`
@@ -28,8 +29,6 @@ const ExhibitionsList = styled.ul`
     margin: 20px 0px;
   }
 `;
-
-const ArtworksList = styled.div``;
 
 const ArtistProfile = ({ artist }) => {
   return (

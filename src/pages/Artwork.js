@@ -1,10 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { useParams } from "react-router-dom";
+import { withRouter } from "react-router";
+import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 
 import Header from "../components/Header";
+import { getToken } from "../utils/token";
+
+const Button = styled.button`
+  cursor: pointer;
+  background-color: #990000;
+  border: none;
+  color: #ffffff;
+  padding: 10px 32px;
+`;
 
 const ArtworkContainer = styled.div`
   display: flex;
@@ -30,7 +39,7 @@ const ArtistPhoto = styled.img`
   border-radius: 200px;
 `;
 
-const Artwork = () => {
+const Artwork = ({ history }) => {
   const { slug } = useParams();
   const [artwork, setArtwork] = useState({});
   const [artist, setArtist] = useState({});
@@ -50,11 +59,31 @@ const Artwork = () => {
       });
   }, [url]);
 
+  const handleRemoveArtwork = async () => {
+    try {
+      const response = await axios.delete(
+        `${process.env.REACT_APP_API_URL}/artworks/${artwork.slug}`,
+        {
+          headers: {
+            Authorization: "Bearer " + getToken(),
+            "content-type": "multipart/form-data",
+          },
+        }
+      );
+
+      if (response.data) history.push(`/artworks`);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div>
       <Header></Header>
 
       {error && <p>{error}</p>}
+
+      {!error && <Button onClick={handleRemoveArtwork}>Remove Artwork</Button>}
 
       {!error && (
         <ArtworkContainer>
@@ -84,4 +113,4 @@ const Artwork = () => {
   );
 };
 
-export default Artwork;
+export default withRouter(Artwork);
