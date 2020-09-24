@@ -1,9 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import ArtworkList from "./ArtworkList";
 
 const ArtistContainer = styled.div`
-  max-width: 720px;
+  max-width: 920px;
   margin: 0 auto;
   h3 {
     font-size: 1.5rem;
@@ -53,11 +54,7 @@ const ArtistProfile = ({ artist }) => {
 
       <div>
         <h4>Artworks</h4>
-        <ArtworksList>
-          {artist.artworks.map((artwork, index) => {
-            return <img src={artwork.imageUrl} key={index} />;
-          })}
-        </ArtworksList>
+        <ArtworkList artworks={artist.artworks}></ArtworkList>
       </div>
     </ArtistContainer>
   );
