@@ -1,19 +1,12 @@
 import React from "react";
-import styled from "styled-components";
 
 import Page from "../components/Page";
-
-const Center = styled.div`
-  display: flex;
-  justify-content: center;
-`;
+import ErrorHeading from "../components/ErrorHeading";
 
 const NotFound = () => {
   return (
     <Page>
-      <Center>
-        <h1>Sorry, page not found.</h1>
-      </Center>
+      <ErrorHeading>Sorry, page not found.</ErrorHeading>
     </Page>
   );
 };

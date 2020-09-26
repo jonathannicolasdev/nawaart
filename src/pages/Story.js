@@ -4,6 +4,7 @@ import styled from "styled-components";
 import axios from "axios";
 
 import Page from "../components/Page";
+import ErrorHeading from "../components/ErrorHeading";
 
 const StoryContainer = styled.div`
   display: flex;
@@ -22,23 +23,27 @@ const Story = () => {
   const { slug } = useParams();
   const [story, setStory] = useState({});
   const [error, setError] = useState();
+
   const url = process.env.REACT_APP_API_URL + `/stories/${slug}`;
 
   useEffect(() => {
-    axios
-      .get(url)
-      .then((response) => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(url);
         setStory(response.data.story);
-      })
-      .catch((error) => {
-        setError(error);
-      });
-  }, [url, error]);
+      } catch (err) {
+        setError(err);
+      }
+    };
+
+    fetchData();
+  }, [url]);
 
   return (
     <Page>
-      {error && <p>{error}</p>}
-      {!error && (
+      {error && <ErrorHeading>Sorry, story not found.</ErrorHeading>}
+
+      {!error && story && story.title && (
         <StoryContainer>
           <img src={story.imageUrl} alt="" />
           <h2>{story.title}</h2>

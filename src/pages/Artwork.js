@@ -7,6 +7,7 @@ import axios from "axios";
 import { getToken } from "../utils/token";
 
 import Page from "../components/Page";
+import ErrorHeading from "../components/ErrorHeading";
 
 const Button = styled.button`
   cursor: pointer;
@@ -79,7 +80,7 @@ const Artwork = ({ history }) => {
 
   return (
     <Page>
-      {error && <p>{JSON.stringify(error)}</p>}
+      {error && <ErrorHeading>Sorry, artwork not found.</ErrorHeading>}
 
       {!error && artwork && (
         <Button onClick={handleRemoveArtwork}>Remove Artwork</Button>

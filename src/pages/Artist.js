@@ -4,6 +4,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 
 import Page from "../components/Page";
+import ErrorHeading from "../components/ErrorHeading";
 import ArtistProfile from "../components/ArtistProfile";
 import { getToken } from "../utils/token";
 
@@ -26,16 +27,11 @@ const Artist = ({ history }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const responseArtist = await axios.get(url);
-
-      if (responseArtist) {
-        setArtist(responseArtist.data.artist);
-
-        try {
-          await axios.get(responseArtist.data.artist.photoUrl);
-        } catch (err) {
-          setError(err);
-        }
+      try {
+        const response = await axios.get(url);
+        setArtist(response.data.artist);
+      } catch (err) {
+        setError(err);
       }
     };
 
@@ -61,17 +57,13 @@ const Artist = ({ history }) => {
 
   return (
     <Page>
-      {error && <p>{JSON.stringify(error)}</p>}
+      {error && <ErrorHeading>Sorry, artist not found.</ErrorHeading>}
 
       {!error && artist && (
         <Button onClick={handleRemoveArtist}>Remove Artist</Button>
       )}
 
-      {artist.name ? (
-        <ArtistProfile artist={artist} />
-      ) : (
-        <p>Artist not found</p>
-      )}
+      {!error && artist && artist.name && <ArtistProfile artist={artist} />}
     </Page>
   );
 };
