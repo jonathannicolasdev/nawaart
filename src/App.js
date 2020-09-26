@@ -3,6 +3,8 @@ import { Provider } from "react-redux";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import axios from "axios";
 
+import PrivateRoute from "./PrivateRoute";
+
 import HomePage from "./pages/Home";
 import ArtistsPage from "./pages/Artists";
 import ArtistPage from "./pages/Artist";
@@ -34,10 +36,14 @@ class App extends Component {
           <Switch>
             <Route path="/" component={HomePage} exact />
             <Route path="/about" component={AboutPage} exact />
-            <Route path="/artists/add" component={AddArtistPage} exact />
+            <PrivateRoute path="/artists/add" component={AddArtistPage} exact />
             <Route path="/artists/:slug" component={ArtistPage} />
             <Route path="/artists" component={ArtistsPage} />
-            <Route path="/artworks/add" component={AddArtworkPage} exact />
+            <PrivateRoute
+              path="/artworks/add"
+              component={AddArtworkPage}
+              exact
+            />
             <Route path="/artworks/:slug" component={ArtworkPage} />
             <Route path="/artworks" component={ArtworksPage} />
             <Route path="/stories/:slug" component={StoryPage}></Route>
