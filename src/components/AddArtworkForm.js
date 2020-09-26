@@ -40,6 +40,10 @@ const SelectStyled = styled(Select)`
   font-size: 1.5rem;
 `;
 
+const Error = styled.p`
+  color: red;
+`;
+
 const AddArtwork = ({ history, options }) => {
   const [artwork, setArtwork] = useState({
     artistId: "",
@@ -49,6 +53,8 @@ const AddArtwork = ({ history, options }) => {
     country: "",
     dimensions: "",
   });
+
+  const [error, setError] = useState();
 
   const url = process.env.REACT_APP_API_URL + "/artworks";
 
@@ -86,7 +92,7 @@ const AddArtwork = ({ history, options }) => {
         console.error("You need the artist, title, image");
       }
     } catch (error) {
-      console.error(error);
+      setError(error);
     }
   };
 
@@ -207,6 +213,7 @@ const AddArtwork = ({ history, options }) => {
 
         <FormGroup>
           <Input type="submit" value="Add Artwork" />
+          {error && <Error>Failed to add Artwork. Please try again.</Error>}
         </FormGroup>
       </Form>
     </FormContainer>
