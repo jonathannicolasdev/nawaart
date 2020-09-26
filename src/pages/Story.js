@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 
-import Header from "../components/Header";
+import Page from "../components/Page";
 
 const StoryContainer = styled.div`
   display: flex;
@@ -36,8 +36,7 @@ const Story = () => {
   }, [url, error]);
 
   return (
-    <div>
-      <Header></Header>
+    <Page>
       {error && <p>{error}</p>}
       {!error && (
         <StoryContainer>
@@ -46,7 +45,7 @@ const Story = () => {
           <div dangerouslySetInnerHTML={{ __html: story.content }} />
         </StoryContainer>
       )}
-    </div>
+    </Page>
   );
 };
 

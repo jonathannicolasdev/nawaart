@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import Header from "../components/Header";
+import Page from "../components/Page";
 import ArtistList from "../components/ArtistList";
 
 import getArtists from "../redux/actions/getArtists";
@@ -22,9 +22,7 @@ const Artists = ({ isLoading, artists, isAuthenticated, handleGetArtists }) => {
   }, [handleGetArtists]);
 
   return (
-    <div>
-      <Header></Header>
-
+    <Page>
       {isAuthenticated && (
         <LinkButton to="/artists/add">Add New Artist</LinkButton>
       )}
@@ -32,7 +30,7 @@ const Artists = ({ isLoading, artists, isAuthenticated, handleGetArtists }) => {
       {isLoading && <p>Loading artists...</p>}
 
       {!isLoading && artists && <ArtistList artists={artists} />}
-    </div>
+    </Page>
   );
 };
 

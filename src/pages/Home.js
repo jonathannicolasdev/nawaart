@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import Header from "../components/Header";
 import axios from "axios";
 import dayjs from "dayjs";
+
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 const Hero = styled.div`
   height: 100vh;
@@ -70,7 +72,7 @@ const HomePage = () => {
   return (
     <div>
       <Hero>
-        <Header></Header>
+        <Header />
         <HeroDetails>
           <h2>Billy Childish</h2>
           <p>
@@ -104,6 +106,7 @@ const HomePage = () => {
           )}
         </Stories>
       </Section>
+      <Footer />
     </div>
   );
 };

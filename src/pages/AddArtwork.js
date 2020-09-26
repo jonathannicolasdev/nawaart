@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import Header from "../components/Header";
 import getArtists from "../redux/actions/getArtists";
+import Page from "../components/Page";
 import AddArtworkForm from "../components/AddArtworkForm";
 
 // const options = [
@@ -37,13 +37,11 @@ const AddArtwork = ({
   }, [handleGetArtists, artists]);
 
   return (
-    <div>
-      <Header></Header>
-
+    <Page>
       {isLoading && <p>Loading artists...</p>}
 
       {!isLoading && artists && <AddArtworkForm options={options} />}
-    </div>
+    </Page>
   );
 };
 

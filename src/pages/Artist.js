@@ -3,7 +3,7 @@ import { withRouter } from "react-router";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
-import Header from "../components/Header";
+import Page from "../components/Page";
 import ArtistProfile from "../components/ArtistProfile";
 import { getToken } from "../utils/token";
 
@@ -60,9 +60,7 @@ const Artist = ({ history }) => {
   };
 
   return (
-    <div>
-      <Header></Header>
-
+    <Page>
       {error && <p>{JSON.stringify(error)}</p>}
 
       {!error && artist && (
@@ -74,7 +72,7 @@ const Artist = ({ history }) => {
       ) : (
         <p>Artist not found</p>
       )}
-    </div>
+    </Page>
   );
 };
 

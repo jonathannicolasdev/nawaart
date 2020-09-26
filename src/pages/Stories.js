@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 
-import Header from "../components/Header";
+import Page from "../components/Page";
 
 const StoriesContainer = styled.div`
   margin: 10px;
@@ -50,8 +50,7 @@ const Stories = () => {
   }, [url, error]);
 
   return (
-    <div>
-      <Header></Header>
+    <Page>
       <StoriesContainer>
         {stories.map((story, index) => {
           return (
@@ -64,7 +63,7 @@ const Stories = () => {
           );
         })}
       </StoriesContainer>
-    </div>
+    </Page>
   );
 };
 

@@ -4,7 +4,7 @@ import styled from "styled-components";
 import axios from "axios";
 import { getToken } from "../utils/token";
 
-import Header from "../components/Header";
+import Page from "../components/Page";
 import ExhibitionsFormGroup from "../components/ExhibitionsFormGroup";
 
 const FormContainer = styled.div`
@@ -110,9 +110,7 @@ const AddArtist = (props) => {
   };
 
   return (
-    <div>
-      <Header></Header>
-
+    <Page>
       <FormContainer>
         <h1>Add New Artist</h1>
 
@@ -174,7 +172,7 @@ const AddArtist = (props) => {
           </FormGroup>
         </Form>
       </FormContainer>
-    </div>
+    </Page>
   );
 };
 

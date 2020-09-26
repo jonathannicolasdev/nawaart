@@ -1,6 +1,6 @@
 import React from "react";
-import Header from "../components/Header";
 import styled from "styled-components";
+import Page from "../components/Page";
 
 const AboutContainer = styled.div`
   display: flex;
@@ -17,14 +17,13 @@ const AboutContainer = styled.div`
 
 const About = () => {
   return (
-    <div>
-      <Header></Header>
+    <Page>
       <AboutContainer>
         <p>This is Nawaart</p>
         <img src="/assets/aung-jo.jpg" alt="About"></img>
         <p> this is the about page</p>
       </AboutContainer>
-    </div>
+    </Page>
   );
 };
 

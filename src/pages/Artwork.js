@@ -4,8 +4,9 @@ import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 
-import Header from "../components/Header";
 import { getToken } from "../utils/token";
+
+import Page from "../components/Page";
 
 const Button = styled.button`
   cursor: pointer;
@@ -77,9 +78,7 @@ const Artwork = ({ history }) => {
   };
 
   return (
-    <div>
-      <Header></Header>
-
+    <Page>
       {error && <p>{JSON.stringify(error)}</p>}
 
       {!error && artwork && (
@@ -110,7 +109,7 @@ const Artwork = ({ history }) => {
           )}
         </ArtworkContainer>
       )}
-    </div>
+    </Page>
   );
 };
 

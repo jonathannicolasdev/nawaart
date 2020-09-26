@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import Header from "../components/Header";
+import Page from "../components/Page";
 import ArtworkList from "../components/ArtworkList";
 
 import getArtworks from "../redux/actions/getArtworks";
@@ -27,15 +27,14 @@ const Artworks = ({
   }, [handleGetArtworks]);
 
   return (
-    <div>
-      <Header></Header>
+    <Page>
       {isAuthenticated && (
         <LinkButton to="/artworks/add">Add New Artwork</LinkButton>
       )}
       {isLoading && <div>Loading artworks...</div>}
 
       {!isLoading && artworks && <ArtworkList artworks={artworks} />}
-    </div>
+    </Page>
   );
 };
 
