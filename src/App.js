@@ -17,6 +17,7 @@ import AboutPage from "./pages/About";
 import LoginPage from "./pages/Login";
 import AddArtistPage from "./pages/AddArtist";
 import AddArtworkPage from "./pages/AddArtwork";
+import NotFoundPage from "./pages/NotFound";
 
 import store from "./redux/store";
 
@@ -50,6 +51,7 @@ class App extends Component {
             <Route path="/stories" component={StoriesPage} />
             <Route path="/register" component={RegisterPage} />
             <Route path="/login" component={LoginPage} />
+            <Route path="*" component={NotFoundPage} />
           </Switch>
         </BrowserRouter>
       </Provider>
