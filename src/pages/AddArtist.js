@@ -4,6 +4,7 @@ import styled from "styled-components";
 import axios from "axios";
 import { getToken } from "../utils/token";
 
+import Header from "../components/Header";
 import ExhibitionsFormGroup from "../components/ExhibitionsFormGroup";
 
 const FormContainer = styled.div`
@@ -103,66 +104,70 @@ const AddArtist = (props) => {
   };
 
   return (
-    <FormContainer>
-      <h1>Add New Artist</h1>
+    <div>
+      <Header></Header>
 
-      <Form onSubmit={handleSubmit}>
-        <FormGroup>
-          <Label htmlFor="name">
-            <h3>Name</h3>
-          </Label>
-          <Input
-            name="name"
-            type="text"
-            placeholder="Artist's Name"
-            value={artist.name}
-            onChange={(event) => {
-              setArtist({
-                ...artist,
-                name: event.target.value,
-              });
-            }}
-          />
-        </FormGroup>
+      <FormContainer>
+        <h1>Add New Artist</h1>
 
-        <FormGroup>
-          <Label htmlFor="photo">
-            <h3>Photo</h3>
-          </Label>
-          <Input name="photo" type="file" onChange={onFileChange} />
-        </FormGroup>
-
-        <section>
-          <h3>Biography</h3>
-
+        <Form onSubmit={handleSubmit}>
           <FormGroup>
-            <SubLabel htmlFor="about">About</SubLabel>
-            <TextArea
-              name="about"
-              value={artist.biography.about}
+            <Label htmlFor="name">
+              <h3>Name</h3>
+            </Label>
+            <Input
+              name="name"
+              type="text"
+              placeholder="Artist's Name"
+              value={artist.name}
               onChange={(event) => {
                 setArtist({
                   ...artist,
-                  biography: {
-                    ...artist.biography,
-                    about: event.target.value,
-                  },
+                  name: event.target.value,
                 });
               }}
             />
           </FormGroup>
 
-          <ExhibitionsFormGroup
-            exhibitions={artist.biography.exhibitions}
-            setExhibitions={handleSetExhibitions}
-          />
-        </section>
+          <FormGroup>
+            <Label htmlFor="photo">
+              <h3>Photo</h3>
+            </Label>
+            <Input name="photo" type="file" onChange={onFileChange} />
+          </FormGroup>
 
-        <FormGroup>
-          <Input type="submit" value="Add Artist" />
-        </FormGroup>
-      </Form>
-    </FormContainer>
+          <section>
+            <h3>Biography</h3>
+
+            <FormGroup>
+              <SubLabel htmlFor="about">About</SubLabel>
+              <TextArea
+                name="about"
+                value={artist.biography.about}
+                onChange={(event) => {
+                  setArtist({
+                    ...artist,
+                    biography: {
+                      ...artist.biography,
+                      about: event.target.value,
+                    },
+                  });
+                }}
+              />
+            </FormGroup>
+
+            <ExhibitionsFormGroup
+              exhibitions={artist.biography.exhibitions}
+              setExhibitions={handleSetExhibitions}
+            />
+          </section>
+
+          <FormGroup>
+            <Input type="submit" value="Add Artist" />
+          </FormGroup>
+        </Form>
+      </FormContainer>
+    </div>
   );
 };
 

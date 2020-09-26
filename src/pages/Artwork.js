@@ -54,8 +54,8 @@ const Artwork = ({ history }) => {
         setArtwork(response.data.artwork);
         setArtist(response.data.artwork.artist);
       })
-      .catch((error) => {
-        setError(error);
+      .catch((err) => {
+        setError(err);
       });
   }, [url]);
 
@@ -66,14 +66,13 @@ const Artwork = ({ history }) => {
         {
           headers: {
             Authorization: "Bearer " + getToken(),
-            "content-type": "multipart/form-data",
           },
         }
       );
 
       if (response.data) history.push(`/artworks`);
-    } catch (error) {
-      console.error(error);
+    } catch (err) {
+      setError(err);
     }
   };
 
@@ -81,11 +80,13 @@ const Artwork = ({ history }) => {
     <div>
       <Header></Header>
 
-      {error && <p>{error}</p>}
+      {error && <p>{JSON.stringify(error)}</p>}
 
-      {!error && <Button onClick={handleRemoveArtwork}>Remove Artwork</Button>}
+      {!error && artwork && (
+        <Button onClick={handleRemoveArtwork}>Remove Artwork</Button>
+      )}
 
-      {!error && (
+      {!error && artwork && (
         <ArtworkContainer>
           {artwork ? (
             <div>
