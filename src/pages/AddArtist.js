@@ -48,6 +48,10 @@ const TextArea = styled.textarea`
   height: 200px;
 `;
 
+const Error = styled.p`
+  color: red;
+`;
+
 const AddArtist = (props) => {
   const [artist, setArtist] = useState({
     name: "",
@@ -57,6 +61,8 @@ const AddArtist = (props) => {
       exhibitions: [""],
     },
   });
+
+  const [error, setError] = useState();
 
   const url = process.env.REACT_APP_API_URL + "/artists";
 
@@ -92,7 +98,7 @@ const AddArtist = (props) => {
         props.history.push(`/artists/${response.data.artist.slug}`);
       }
     } catch (error) {
-      console.error(error);
+      setError(error);
     }
   };
 
@@ -164,6 +170,7 @@ const AddArtist = (props) => {
 
           <FormGroup>
             <Input type="submit" value="Add Artist" />
+            {error && <Error>Failed to add Artist. Please try again.</Error>}
           </FormGroup>
         </Form>
       </FormContainer>
