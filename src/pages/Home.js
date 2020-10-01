@@ -35,20 +35,37 @@ const Heading = styled.h1`
 `;
 
 const Big = styled.span`
-  font-size: 120px;
+  font-size: 150px;
 `;
 
 const Small = styled.span`
-  font-size: 40px;
+  font-size: 50px;
 `;
 
 const ActionLink = styled(Link)`
+  font-size: 24px;
   color: #fff;
   text-decoration: none;
   background-color: #890b0b;
   margin: 10px;
-  padding: 10px;
+  padding: 15px 50px;
   border-radius: 5px;
+`;
+
+const Meta = styled.div`
+  color: #fff;
+  font-family: "Armata";
+  margin-left: 50px;
+  margin-bottom: 50px;
+  h2 {
+    font-size: 30px;
+    margin: 0;
+    margin-bottom: 10px;
+  }
+  p {
+    margin: 0;
+    font-size: 20px;
+  }
 `;
 
 const HomePage = () => {
@@ -63,13 +80,13 @@ const HomePage = () => {
               <Big>Artworks</Big>
               <Small>From Myanmar</Small>
             </Heading>
-            <ActionLink>View Catalogue</ActionLink>
+            <ActionLink to="/artworks">View Catalogue</ActionLink>
           </div>
         </Header>
-        <div>
-          <p>Panyan</p>
+        <Meta>
+          <h2>Panyan</h2>
           <p>the art of bricklaying and masonry</p>
-        </div>
+        </Meta>
       </Hero>
 
       <Footer />
