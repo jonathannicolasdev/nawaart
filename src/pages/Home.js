@@ -7,7 +7,12 @@ import Footer from "../components/Footer";
 
 const Hero = styled.div`
   height: 100vh;
-  background-image: url("/assets/Home.jpg");
+  background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.8) 100%
+    ),
+    url("/assets/Home.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
