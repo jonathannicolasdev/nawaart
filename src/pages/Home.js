@@ -17,13 +17,27 @@ const Hero = styled.div`
 
 const HeroDetails = styled.div`
   font-family: "Armata";
-  padding: 50px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  h1 {
+    font-size: 100px;
+    margin: 0;
+  }
   h2 {
-    font-size: 2em;
+    font-size: 33px;
+    margin: 0;
   }
-  p {
-    font-size: 1.5em;
-  }
+`;
+
+const ActionLink = styled(Link)`
+  color: white;
+  text-decoration: none;
+  background-color: #890b0b;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
 `;
 
 const HomePage = () => {
@@ -32,10 +46,12 @@ const HomePage = () => {
       <Hero>
         <Header />
         <HeroDetails>
-          <h2>Contemporary</h2>
-          <h1>Artworks</h1>
-          <h2>From Myanmar</h2>
-          <Link>View Catalogue</Link>
+          <div>
+            <h2>Contemporary</h2>
+            <h1>Artworks</h1>
+            <h2>From Myanmar</h2>
+            <ActionLink>View Catalogue</ActionLink>
+          </div>
         </HeroDetails>
         <div>
           <p>Panyan</p>
