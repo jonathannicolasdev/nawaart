@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Header from "./Header";
+import Navigation from "./Navigation";
 import Footer from "./Footer";
 
 const Page = ({ children }) => {
   return (
     <div>
-      <Header />
+      <Navigation />
       {children}
       <Footer />
     </div>

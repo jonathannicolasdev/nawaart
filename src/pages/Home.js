@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-import Header from "../components/Header";
+import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 
 const Hero = styled.div`
@@ -15,24 +15,30 @@ const Hero = styled.div`
   justify-content: space-between;
 `;
 
-const HeroDetails = styled.div`
+const Header = styled.div`
   font-family: "Armata";
   color: white;
   display: flex;
   justify-content: center;
   text-align: center;
-  h1 {
-    font-size: 100px;
-    margin: 0;
-  }
-  h2 {
-    font-size: 33px;
-    margin: 0;
-  }
+`;
+
+const Heading = styled.h1`
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+`;
+
+const Big = styled.span`
+  font-size: 120px;
+`;
+
+const Small = styled.span`
+  font-size: 40px;
 `;
 
 const ActionLink = styled(Link)`
-  color: white;
+  color: #fff;
   text-decoration: none;
   background-color: #890b0b;
   margin: 10px;
@@ -44,15 +50,17 @@ const HomePage = () => {
   return (
     <div>
       <Hero>
-        <Header />
-        <HeroDetails>
+        <Navigation />
+        <Header>
           <div>
-            <h2>Contemporary</h2>
-            <h1>Artworks</h1>
-            <h2>From Myanmar</h2>
+            <Heading>
+              <Small>Contemporary</Small>
+              <Big>Artworks</Big>
+              <Small>From Myanmar</Small>
+            </Heading>
             <ActionLink>View Catalogue</ActionLink>
           </div>
-        </HeroDetails>
+        </Header>
         <div>
           <p>Panyan</p>
           <p>the art of bricklaying and masonry</p>

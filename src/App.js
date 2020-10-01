@@ -22,14 +22,6 @@ import NotFoundPage from "./pages/NotFound";
 import store from "./redux/store";
 
 class App extends Component {
-  componentDidMount() {
-    const url = process.env.REACT_APP_API_URL;
-    async function requestBackend() {
-      await axios.get(url);
-    }
-    requestBackend();
-  }
-
   render() {
     return (
       <Provider store={store}>

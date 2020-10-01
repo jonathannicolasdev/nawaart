@@ -6,25 +6,22 @@ import PropTypes from "prop-types";
 
 import logout from "../redux/actions/logout";
 
-const HeaderStyled = styled.header`
+const NavigationStyled = styled.nav`
   display: flex;
-  height: 120px;
   justify-content: space-between;
   align-items: center;
   padding: 50px;
-`;
-
-const Navigation = styled.nav`
-  font-size: 1.5em;
-  font-family: "Catamaran";
-  font-weight: 700;
-  letter-spacing: 0.1em;
 `;
 
 const Links = styled.ul`
   display: flex;
   list-style: none;
   text-transform: uppercase;
+  font-size: 1.5em;
+  font-family: "Catamaran";
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  margin: 0;
   li {
     margin: 0 20px;
     cursor: pointer;
@@ -35,34 +32,32 @@ const Links = styled.ul`
   }
 `;
 
-const Header = ({ isAuthenticated, handleLogout }) => {
+const Navigation = ({ isAuthenticated, handleLogout }) => {
   return (
-    <HeaderStyled>
+    <NavigationStyled>
       <Link to="/">
         <img src="/nawaart-logo.svg" alt="nawaart" />
       </Link>
-      <Navigation>
-        <Links>
+      <Links>
+        <li>
+          <Link to="/artists">Artists</Link>
+        </li>
+        <li>
+          <Link to="/artworks">Artworks</Link>
+        </li>
+        <li>
+          <Link to="/stories">Stories</Link>
+        </li>
+        <li>
+          <Link to="/about">About</Link>
+        </li>
+        {isAuthenticated && (
           <li>
-            <Link to="/artists">Artists</Link>
+            <span onClick={() => handleLogout()}>Logout</span>
           </li>
-          <li>
-            <Link to="/artworks">Artworks</Link>
-          </li>
-          <li>
-            <Link to="/stories">Stories</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-          {isAuthenticated && (
-            <li>
-              <span onClick={() => handleLogout()}>Logout</span>
-            </li>
-          )}
-        </Links>
-      </Navigation>
-    </HeaderStyled>
+        )}
+      </Links>
+    </NavigationStyled>
   );
 };
 
@@ -76,9 +71,9 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-Header.propTypes = {
+Navigation.propTypes = {
   isAuthenticated: PropTypes.bool,
   handleLogin: PropTypes.func,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Navigation);
