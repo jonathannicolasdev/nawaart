@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
-import Navigation from "./Navigation";
 import Footer from "./Footer";
 
 const Main = styled(motion.main)``;
@@ -19,11 +18,9 @@ const pageTransition = {
   duration: 0.5,
 };
 
-const Page = ({ children }) => {
+const PageSpecial = ({ children }) => {
   return (
     <div>
-      <Navigation />
-
       <Main
         initial="initial"
         animate="in"
@@ -38,8 +35,8 @@ const Page = ({ children }) => {
   );
 };
 
-Page.propTypes = {
+PageSpecial.propTypes = {
   children: PropTypes.any,
 };
 
-export default Page;
+export default PageSpecial;

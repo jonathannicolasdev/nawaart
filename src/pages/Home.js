@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
+import PageSpecial from "../components/PageSpecial";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 
@@ -71,7 +72,7 @@ const Meta = styled.div`
 
 const HomePage = () => {
   return (
-    <div>
+    <PageSpecial>
       <Hero>
         <Navigation />
         <Header>
@@ -91,9 +92,7 @@ const HomePage = () => {
           <p>the art of bricklaying and masonry</p>
         </Meta>
       </Hero>
-
-      <Footer />
-    </div>
+    </PageSpecial>
   );
 };
 
