@@ -4,6 +4,7 @@ import styled from "styled-components";
 import axios from "axios";
 
 import Page from "../components/Page";
+import Hero from "../components/Hero";
 
 const StoriesContainer = styled.div`
   margin: 10px;
@@ -51,6 +52,12 @@ const Stories = () => {
 
   return (
     <Page>
+      <Hero
+        title="Interesting tales about art"
+        description="Unique perspectives around"
+        coverUrl="/assets/Stories.jpg"
+        backgroundColor="rgba(76, 96, 74, 0.8)"
+      ></Hero>
       <StoriesContainer>
         {stories.map((story, index) => {
           return (

@@ -5,31 +5,10 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 import Page from "../components/Page";
+import Hero from "../components/Hero";
 import ArtistList from "../components/ArtistList";
 
 import getArtists from "../redux/actions/getArtists";
-
-const Hero = styled.div`
-  display: flex;
-  justify-content: center;
-  color: #ffffff;
-  padding: 50px 0px;
-  background: linear-gradient(
-      0deg,
-      rgba(147, 32, 46, 0.8),
-      rgba(147, 32, 46, 0.8)
-    ),
-    url("/assets/Artists.jpg");
-  h1 {
-    font-size: 50px;
-    margin-bottom: 10px;
-    margin-top: 0px;
-  }
-  p {
-    font-size: 24px;
-    margin: 0;
-  }
-`;
 
 const LinkButton = styled(Link)`
   background-color: #333333;
@@ -45,12 +24,12 @@ const Artists = ({ isLoading, artists, isAuthenticated, handleGetArtists }) => {
 
   return (
     <Page>
-      <Hero>
-        <div>
-          <h1>Discover Bermese artists</h1>
-          <p>Famous maestro in the making</p>
-        </div>
-      </Hero>
+      <Hero
+        title="Discover Bermese artists"
+        description="Famous maestro in the making"
+        coverUrl="/assets/Artists.jpg"
+        backgroundColor="rgba(147, 32, 46, 0.8)"
+      ></Hero>
       {isAuthenticated && (
         <LinkButton to="/artists/add">Add New Artist</LinkButton>
       )}
