@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import Page from "../components/Page";
+import Hero from "../components/Hero";
 import ArtworkList from "../components/ArtworkList";
 
 import getArtworks from "../redux/actions/getArtworks";
@@ -28,6 +29,12 @@ const Artworks = ({
 
   return (
     <Page>
+      <Hero
+        title="The expression of the artists"
+        description="High quality paintings, drawings, and other artistic works"
+        coverUrl="/assets/Artworks.jpg"
+        backgroundColor="rgba(147, 80, 32, 0.8)"
+      ></Hero>
       {isAuthenticated && (
         <LinkButton to="/artworks/add">Add New Artwork</LinkButton>
       )}

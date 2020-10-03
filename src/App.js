@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import axios from "axios";
 
 import PrivateRoute from "./PrivateRoute";
 
