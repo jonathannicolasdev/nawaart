@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
+// https://framer.com/api/motion/animate-presence
 
 import PrivateRoute from "./PrivateRoute";
 
@@ -25,25 +27,31 @@ class App extends Component {
     return (
       <Provider store={store}>
         <BrowserRouter>
-          <Switch>
-            <Route path="/" component={HomePage} exact />
-            <Route path="/about" component={AboutPage} exact />
-            <PrivateRoute path="/artists/add" component={AddArtistPage} exact />
-            <Route path="/artists/:slug" component={ArtistPage} />
-            <Route path="/artists" component={ArtistsPage} />
-            <PrivateRoute
-              path="/artworks/add"
-              component={AddArtworkPage}
-              exact
-            />
-            <Route path="/artworks/:slug" component={ArtworkPage} />
-            <Route path="/artworks" component={ArtworksPage} />
-            <Route path="/stories/:slug" component={StoryPage}></Route>
-            <Route path="/stories" component={StoriesPage} />
-            <Route path="/register" component={RegisterPage} />
-            <Route path="/login" component={LoginPage} />
-            <Route path="*" component={NotFoundPage} />
-          </Switch>
+          <AnimatePresence>
+            <Switch>
+              <Route path="/" component={HomePage} exact />
+              <Route path="/about" component={AboutPage} exact />
+              <PrivateRoute
+                path="/artists/add"
+                component={AddArtistPage}
+                exact
+              />
+              <Route path="/artists/:slug" component={ArtistPage} />
+              <Route path="/artists" component={ArtistsPage} />
+              <PrivateRoute
+                path="/artworks/add"
+                component={AddArtworkPage}
+                exact
+              />
+              <Route path="/artworks/:slug" component={ArtworkPage} />
+              <Route path="/artworks" component={ArtworksPage} />
+              <Route path="/stories/:slug" component={StoryPage}></Route>
+              <Route path="/stories" component={StoriesPage} />
+              <Route path="/register" component={RegisterPage} />
+              <Route path="/login" component={LoginPage} />
+              <Route path="*" component={NotFoundPage} />
+            </Switch>
+          </AnimatePresence>
         </BrowserRouter>
       </Provider>
     );

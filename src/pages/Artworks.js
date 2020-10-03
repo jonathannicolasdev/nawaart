@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import styled from "styled-components";
 
 import Page from "../components/Page";
 import Hero from "../components/Hero";
