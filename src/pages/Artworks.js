@@ -6,16 +6,11 @@ import styled from "styled-components";
 
 import Page from "../components/Page";
 import Hero from "../components/Hero";
+import Content from "../components/Content";
 import ArtworkList from "../components/ArtworkList";
+import LinkButton from "../components/LinkButton";
 
 import getArtworks from "../redux/actions/getArtworks";
-
-const LinkButton = styled(Link)`
-  background-color: #333333;
-  color: #ffffff;
-  padding: 10px 32px;
-  text-decoration: none;
-`;
 
 const Artworks = ({
   isLoading,
@@ -35,12 +30,16 @@ const Artworks = ({
         coverUrl="/assets/Artworks.jpg"
         backgroundColor="rgba(147, 80, 32, 0.8)"
       ></Hero>
-      {isAuthenticated && (
-        <LinkButton to="/artworks/add">Add New Artwork</LinkButton>
-      )}
-      {isLoading && <div>Loading artworks...</div>}
 
-      {!isLoading && artworks && <ArtworkList artworks={artworks} />}
+      <Content>
+        {isAuthenticated && (
+          <LinkButton to="/artworks/add">Add New Artwork</LinkButton>
+        )}
+
+        {isLoading && <div>Loading artworks...</div>}
+
+        {!isLoading && artworks && <ArtworkList artworks={artworks} />}
+      </Content>
     </Page>
   );
 };

@@ -4,20 +4,23 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 const ArtistListContainer = styled.div`
+  margin: 50px 0;
   display: flex;
   flex-wrap: wrap;
   max-width: 1200px;
-  margin: 0 auto;
+  justify-content: center;
 `;
 
 const ArtistLink = styled(Link)`
+  display: block;
   text-decoration: none;
 `;
 
 const ArtistCard = styled.div`
   position: relative;
   text-align: center;
-  margin: 50px;
+  margin: 0 25px;
+  margin-bottom: 50px;
 `;
 
 const ArtistName = styled.span`
@@ -44,12 +47,12 @@ const ArtistList = ({ artists }) => {
       {artists.length > 0 ? (
         artists.map((artist, index) => {
           return (
-            <ArtistLink to={`/artists/${artist.slug}`}>
-              <ArtistCard key={index}>
+            <ArtistCard key={index}>
+              <ArtistLink to={`/artists/${artist.slug}`}>
                 <ArtistImage src={artist.photoUrl}></ArtistImage>
                 <ArtistName>{artist.name}</ArtistName>
-              </ArtistCard>
-            </ArtistLink>
+              </ArtistLink>
+            </ArtistCard>
           );
         })
       ) : (

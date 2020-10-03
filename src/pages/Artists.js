@@ -6,16 +6,11 @@ import PropTypes from "prop-types";
 
 import Page from "../components/Page";
 import Hero from "../components/Hero";
+import Content from "../components/Content";
 import ArtistList from "../components/ArtistList";
+import LinkButton from "../components/LinkButton";
 
 import getArtists from "../redux/actions/getArtists";
-
-const LinkButton = styled(Link)`
-  background-color: #333333;
-  color: #ffffff;
-  padding: 10px 32px;
-  text-decoration: none;
-`;
 
 const Artists = ({ isLoading, artists, isAuthenticated, handleGetArtists }) => {
   useEffect(() => {
@@ -30,13 +25,16 @@ const Artists = ({ isLoading, artists, isAuthenticated, handleGetArtists }) => {
         coverUrl="/assets/Artists.jpg"
         backgroundColor="rgba(147, 32, 46, 0.8)"
       ></Hero>
-      {isAuthenticated && (
-        <LinkButton to="/artists/add">Add New Artist</LinkButton>
-      )}
 
-      {isLoading && <p>Loading artists...</p>}
+      <Content>
+        {isAuthenticated && (
+          <LinkButton to="/artists/add">Add New Artist</LinkButton>
+        )}
 
-      {!isLoading && artists && <ArtistList artists={artists} />}
+        {isLoading && <p>Loading artists...</p>}
+
+        {!isLoading && artists && <ArtistList artists={artists} />}
+      </Content>
     </Page>
   );
 };

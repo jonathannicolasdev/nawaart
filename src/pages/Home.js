@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
@@ -43,12 +44,12 @@ const Small = styled.span`
 `;
 
 const ActionLink = styled(Link)`
-  font-size: 24px;
+  font-size: 20px;
   color: #fff;
   text-decoration: none;
   background-color: #890b0b;
   margin: 10px;
-  padding: 15px 50px;
+  padding: 10px 30px;
   border-radius: 5px;
 `;
 
@@ -80,7 +81,9 @@ const HomePage = () => {
               <Big>Artworks</Big>
               <Small>From Myanmar</Small>
             </Heading>
-            <ActionLink to="/artworks">View Catalogue</ActionLink>
+            <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+              <ActionLink to="/artworks">View Catalogue</ActionLink>
+            </motion.div>
           </div>
         </Header>
         <Meta>

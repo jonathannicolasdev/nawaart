@@ -5,6 +5,8 @@ import axios from "axios";
 
 import Page from "../components/Page";
 import Hero from "../components/Hero";
+import Content from "../components/Content";
+import LinkButton from "../components/LinkButton";
 
 const StoriesContainer = styled.div`
   margin: 10px;
@@ -58,18 +60,27 @@ const Stories = () => {
         coverUrl="/assets/Stories.jpg"
         backgroundColor="rgba(76, 96, 74, 0.8)"
       ></Hero>
-      <StoriesContainer>
-        {stories.map((story, index) => {
-          return (
-            <StoryContainer key={index}>
-              <Link to={`/stories/${story.slug}`}>
-                <StoryImage src={story.imageUrl} alt={story.title}></StoryImage>
-                <h2>{story.title}</h2>
-              </Link>
-            </StoryContainer>
-          );
-        })}
-      </StoriesContainer>
+      <Content>
+        <LinkButton to="/stories/add">Add New Story</LinkButton>
+
+        {stories && (
+          <StoriesContainer>
+            {stories.map((story, index) => {
+              return (
+                <StoryContainer key={index}>
+                  <Link to={`/stories/${story.slug}`}>
+                    <StoryImage
+                      src={story.imageUrl}
+                      alt={story.title}
+                    ></StoryImage>
+                    <h2>{story.title}</h2>
+                  </Link>
+                </StoryContainer>
+              );
+            })}
+          </StoriesContainer>
+        )}
+      </Content>
     </Page>
   );
 };
