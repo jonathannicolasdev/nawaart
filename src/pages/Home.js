@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 
 import PageSpecial from "../components/PageSpecial";
 import Navigation from "../components/Navigation";
-import Footer from "../components/Footer";
 
 const Hero = styled.div`
   height: 100vh;
