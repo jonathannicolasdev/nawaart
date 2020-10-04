@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import axios from "axios";
 
 import Page from "../components/Page";
 import Hero from "../components/Hero";
 import Content from "../components/Content";
 import LinkButton from "../components/LinkButton";
+
+import getStories from "../redux/actions/getStories";
 
 const StoriesContainer = styled.div`
   margin: 10px;
@@ -34,23 +37,10 @@ const StoryImage = styled.img`
   object-fit: cover;
 `;
 
-const Stories = () => {
-  const [stories, setStories] = useState([]);
-  const [error, setError] = useState();
-  const url = process.env.REACT_APP_API_URL + "/stories";
-
+const Stories = ({ isLoading, stories, isAuthenticated, handleGetStories }) => {
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await axios.get(url);
-      if (response) {
-        setStories(response.data.stories);
-      } else {
-        setError("Error when getting stories");
-        console.error(error);
-      }
-    };
-    fetchData();
-  }, [url, error]);
+    handleGetStories();
+  }, [handleGetStories]);
 
   return (
     <Page>
@@ -61,9 +51,13 @@ const Stories = () => {
         backgroundColor="rgba(76, 96, 74, 0.8)"
       ></Hero>
       <Content>
-        <LinkButton to="/stories/add">Add New Story</LinkButton>
+        {isAuthenticated && (
+          <LinkButton to="/stories/add">Add New Story</LinkButton>
+        )}
 
-        {stories && (
+        {isLoading && <div>Loading stories...</div>}
+
+        {!isLoading && stories && (
           <StoriesContainer>
             {stories.map((story, index) => {
               return (
@@ -85,4 +79,24 @@ const Stories = () => {
   );
 };
 
-export default Stories;
+Stories.propTypes = {
+  isLoading: PropTypes.bool,
+  stories: PropTypes.array,
+  handleGetStories: PropTypes.func,
+};
+
+const mapStateToProps = (state) => {
+  return {
+    isLoading: state.stories.isLoading,
+    stories: state.stories.data,
+    isAuthenticated: state.auth.isAuthenticated,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    handleGetStories: () => dispatch(getStories()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Stories);
