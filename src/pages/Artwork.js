@@ -4,10 +4,10 @@ import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 
-import { getToken } from "../utils/token";
-
 import Page from "../components/Page";
 import ErrorHeading from "../components/ErrorHeading";
+
+import { getToken } from "../utils/token";
 
 const Button = styled.button`
   cursor: pointer;
