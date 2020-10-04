@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const FooterStyled = styled.footer`
@@ -24,6 +25,10 @@ const SitemapColumn = styled.ul`
   li {
     font-size: 18px;
     margin: 10px;
+    a {
+      text-decoration: none;
+      color: #55270d;
+    }
   }
 `;
 
@@ -46,15 +51,23 @@ const Footer = () => {
           <li>
             <h3> Nawaart</h3>
           </li>
-          <li>About</li>
-          <li>Stories</li>
+          <li>
+            <Link to="/about">About</Link>
+          </li>
+          <li>
+            <Link to="/stories">Stories</Link>
+          </li>
         </SitemapColumn>
         <SitemapColumn>
           <li>
             <h3>Content</h3>
           </li>
-          <li>Artists</li>
-          <li>Artworks</li>
+          <li>
+            <Link to="/artists">Artists</Link>
+          </li>
+          <li>
+            <Link to="/artworks">Artworks</Link>
+          </li>
         </SitemapColumn>
       </Sitemap>
       <SocialMedia>

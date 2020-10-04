@@ -5,6 +5,7 @@ import { AnimatePresence } from "framer-motion";
 // https://framer.com/api/motion/animate-presence
 
 import PrivateRoute from "./PrivateRoute";
+import ScrollToTop from "./components/ScrollToTop";
 
 import HomePage from "./pages/Home";
 import ArtistsPage from "./pages/Artists";
@@ -27,6 +28,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <BrowserRouter>
+          <ScrollToTop />
           <AnimatePresence>
             <Switch>
               <Route path="/" component={HomePage} exact />
