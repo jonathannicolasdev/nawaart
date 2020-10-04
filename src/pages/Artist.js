@@ -1,71 +1,56 @@
-import React, { useState, useEffect } from "react";
-import { withRouter } from "react-router";
-import axios from "axios";
+import React, { useEffect } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 
 import Page from "../components/Page";
-import ErrorHeading from "../components/ErrorHeading";
+import Content from "../components/Content";
 import ArtistProfile from "../components/ArtistProfile";
-import { getToken } from "../utils/token";
+// import LinkButton from "../components/LinkButton";
 
-import styled from "styled-components";
+import getArtist from "../redux/actions/getArtist";
 
-const Button = styled.button`
-  cursor: pointer;
-  background-color: #990000;
-  border: none;
-  color: #ffffff;
-  padding: 10px 32px;
-`;
-
-const Artist = ({ history }) => {
+const Artist = ({ isLoading, artist, isAuthenticated, handleGetArtist }) => {
   const { slug } = useParams();
-  const [artist, setArtist] = useState({});
-  const [error, setError] = useState();
-
-  const url = process.env.REACT_APP_API_URL + `/artists/${slug}`;
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(url);
-        setArtist(response.data.artist);
-      } catch (err) {
-        setError(err);
-      }
-    };
-
-    fetchData();
-  }, [url]);
-
-  const handleRemoveArtist = async () => {
-    try {
-      const response = await axios.delete(
-        `${process.env.REACT_APP_API_URL}/artists/${artist.slug}`,
-        {
-          headers: {
-            Authorization: "Bearer " + getToken(),
-          },
-        }
-      );
-
-      if (response.data) history.push(`/artists`);
-    } catch (err) {
-      setError(err);
-    }
-  };
+    handleGetArtist(slug);
+  }, [handleGetArtist, slug]);
 
   return (
     <Page>
-      {error && <ErrorHeading>Sorry, artist not found.</ErrorHeading>}
+      <Content>
+        {/* {<ErrorHeading>Sorry, artist not found.</ErrorHeading>} */}
 
-      {!error && artist && (
-        <Button onClick={handleRemoveArtist}>Remove Artist</Button>
-      )}
+        {/* {!error && artist && (
+          <LinkButton onClick={handleRemoveArtist}>Remove Artist</LinkButton>
+        )} */}
 
-      {!error && artist && artist.name && <ArtistProfile artist={artist} />}
+        {!isLoading && artist && <ArtistProfile artist={artist} />}
+      </Content>
     </Page>
   );
 };
 
-export default withRouter(Artist);
+Artist.propTypes = {
+  isLoading: PropTypes.bool,
+  artist: PropTypes.object,
+  isAuthenticated: PropTypes.bool,
+  handleGetArtist: PropTypes.func,
+};
+
+const mapStateToProps = (state) => {
+  return {
+    isLoading: state.artist.isLoading,
+    artist: state.artist.data,
+    isAuthenticated: state.auth.isAuthenticated,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    handleGetArtist: (slug) => dispatch(getArtist(slug)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Artist);

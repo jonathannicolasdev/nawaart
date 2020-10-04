@@ -14,7 +14,7 @@ const Content = ({ children }) => {
 };
 
 Content.propTypes = {
-  children: PropTypes.any.isRequired,
+  children: PropTypes.any,
 };
 
 export default Content;

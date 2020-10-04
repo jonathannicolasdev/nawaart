@@ -13,7 +13,7 @@ const LinkButtonStyled = styled(Link)`
 
 const LinkButton = ({ to, children }) => {
   return (
-    <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+    <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
       <LinkButtonStyled to={to}>{children}</LinkButtonStyled>
     </motion.div>
   );
