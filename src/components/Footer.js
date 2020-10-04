@@ -71,7 +71,7 @@ const Footer = () => {
         </SitemapColumn>
       </Sitemap>
       <SocialMedia>
-        <img src="/assets/Instagram.svg" />
+        <img src="/assets/Instagram.svg" alt="Instagram" />
       </SocialMedia>
       <Copyright>Copyright &copy; 2020 Nawaart</Copyright>
     </FooterStyled>
