@@ -29,18 +29,51 @@ const ArtworkSection = styled.section`
 `;
 
 const ArtworkImage = styled.img`
-  max-width: 720px;
+  width: 720px;
 `;
 
 const ArtistLink = styled(Link)`
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  color: #000000;
 `;
 
 const ArtistPhoto = styled.img`
-  width: 200px;
-  height: 200px;
+  width: 50px;
+  height: 50px;
   object-fit: cover;
   border-radius: 200px;
+  margin-right: 20px;
+`;
+
+const ArtworkHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  max-width: 720px;
+`;
+
+const ArtworkTitle = styled.h3`
+  font-size: 48px;
+  max-width: 450px;
+`;
+const ArtworkYear = styled.h3`
+  font-size: 48px;
+  color: #aaaaaa;
+`;
+
+const ArtworkDetails = styled.div`
+  display: flex;
+`;
+
+const Column = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-right: 50px;
+  span {
+    line-height: 50px;
+  }
+  font-weight: ${(props) => props.keys && 700};
 `;
 
 const Artwork = ({
@@ -79,19 +112,33 @@ const Artwork = ({
             <div>
               <ArtworkSection>
                 <ArtworkImage src={artwork.imageUrl} alt={artwork.title} />
-                <h3>{artwork.title}</h3>
-                <span>{artwork.year}</span>
-                <span>{artwork.dimensions}</span>
-                <span>{artwork.country}</span>
-              </ArtworkSection>
+                <ArtworkHeader>
+                  <ArtworkTitle>{artwork.title}</ArtworkTitle>
+                  <ArtworkYear>{artwork.year}</ArtworkYear>
+                </ArtworkHeader>
 
-              <ArtistLink to={`/artists/${artwork.artist.slug}`}>
-                <ArtistPhoto
-                  src={artwork.artist.photoUrl}
-                  alt={artwork.artist.name}
-                />
-                <h3>{artwork.artist.name}</h3>
-              </ArtistLink>
+                <ArtworkDetails>
+                  <Column keys>
+                    <span>Artist</span>
+                    <span>Country</span>
+                    <span>Medium</span>
+                    <span>Dimensions</span>
+                  </Column>
+
+                  <Column>
+                    <ArtistLink to={`/artists/${artwork.artist.slug}`}>
+                      <ArtistPhoto
+                        src={artwork.artist.photoUrl}
+                        alt={artwork.artist.name}
+                      />
+                      {artwork.artist.name}
+                    </ArtistLink>
+                    <span>{artwork.country}</span>
+                    <span>{artwork.medium || "-"}</span>
+                    <span>{artwork.dimensions}</span>
+                  </Column>
+                </ArtworkDetails>
+              </ArtworkSection>
             </div>
           ) : (
             <div>
