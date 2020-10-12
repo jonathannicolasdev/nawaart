@@ -35,15 +35,13 @@ const Artist = ({
   return (
     <Page>
       <Content>
+        {!isLoading && artist && <ArtistProfile artist={artist} />}
         {!isLoading && error && (
           <ErrorHeading>Sorry, artist not found.</ErrorHeading>
         )}
-
         {isAuthenticated && !isLoading && artist && (
           <Button onClick={removeArtistAndRedirect}>Remove Artist</Button>
         )}
-
-        {!isLoading && artist && <ArtistProfile artist={artist} />}
       </Content>
     </Page>
   );

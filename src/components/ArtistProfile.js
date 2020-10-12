@@ -4,22 +4,30 @@ import styled from "styled-components";
 
 import ArtworkList from "./ArtworkList";
 
-const ArtistContainer = styled.div`
-  max-width: 920px;
-  margin: 0 auto;
-  h3 {
-    font-size: 1.5rem;
-  }
-  h4 {
-    color: #828282;
-  }
+const ArtistCover = styled.div`
+  background-image: url("/assets/artist-cover.jpg");
+  height: 300px;
+  width: 100%;
 `;
 
-const ArtistImage = styled.img`
+const ArtistContainer = styled.div`
+  max-width: 720px;
+  margin: -150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const ArtistPhoto = styled.img`
   width: 300px;
   height: 300px;
   border-radius: 300px;
   object-fit: cover;
+`;
+
+const ArtistName = styled.h3`
+  font-size: 72px;
+  margin: 0;
 `;
 
 const ExhibitionsList = styled.ul`
@@ -32,30 +40,29 @@ const ExhibitionsList = styled.ul`
 
 const ArtistProfile = ({ artist }) => {
   return (
-    <ArtistContainer>
-      <ArtistImage src={artist.photoUrl} alt={artist.name} />
-
-      <h3>{artist.name}</h3>
-
-      <div>
-        <h4>About</h4>
-        <p>{artist.biography.about}</p>
-      </div>
-
-      <div>
-        <h4>Exhibitions</h4>
-        <ExhibitionsList>
-          {artist.biography.exhibitions.map((exhibition, index) => {
-            return <li key={index}>{exhibition}</li>;
-          })}
-        </ExhibitionsList>
-      </div>
-
-      <div>
-        <h4>Artworks</h4>
-        <ArtworkList artworks={artist.artworks}></ArtworkList>
-      </div>
-    </ArtistContainer>
+    <>
+      <ArtistCover></ArtistCover>
+      <ArtistContainer>
+        <ArtistPhoto src={artist.photoUrl} alt={artist.name} />
+        <ArtistName>{artist.name}</ArtistName>
+        <div>
+          <h4>About</h4>
+          <p>{artist.biography.about}</p>
+        </div>
+        <div>
+          <h4>Exhibitions</h4>
+          <ExhibitionsList>
+            {artist.biography.exhibitions.map((exhibition, index) => {
+              return <li key={index}>{exhibition}</li>;
+            })}
+          </ExhibitionsList>
+        </div>
+        <div>
+          <h4>Artworks</h4>
+          <ArtworkList artworks={artist.artworks}></ArtworkList>
+        </div>
+      </ArtistContainer>
+    </>
   );
 };
 
