@@ -7,7 +7,6 @@ import Page from "../components/Page";
 import Content from "../components/Content";
 import ErrorHeading from "../components/ErrorHeading";
 import ArtistProfile from "../components/ArtistProfile";
-import Button from "../components/Button";
 
 import getArtist from "../redux/actions/getArtist";
 import removeArtist from "../redux/actions/removeArtist";
