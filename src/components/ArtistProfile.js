@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import ArtworkList from "./ArtworkList";
+import Button from "./Button";
 
 const ArtistCover = styled.div`
   background-image: url("/assets/artist-cover.jpg");
@@ -11,7 +12,6 @@ const ArtistCover = styled.div`
 `;
 
 const ArtistContainer = styled.div`
-  max-width: 720px;
   margin: -150px;
   display: flex;
   flex-direction: column;
@@ -28,39 +28,63 @@ const ArtistPhoto = styled.img`
 const ArtistName = styled.h3`
   font-size: 72px;
   margin: 0;
+  margin-bottom: 30px;
+`;
+
+const Section = styled.section`
+  font-size: 22px;
+  width: 900px;
+  margin-bottom: 50px;
+  line-height: 150%;
+`;
+
+const Heading = styled.h4`
+  font-size: 36px;
+  margin: 0;
+  margin-bottom: 10px;
+  text-align: ${({ center }) => center && "center"};
+  color: ${({ color }) => color};
 `;
 
 const ExhibitionsList = styled.ul`
-  list-style: none;
-  padding: 0;
   li {
     margin: 20px 0px;
   }
 `;
 
-const ArtistProfile = ({ artist }) => {
+const ArtistProfile = ({
+  artist,
+  isAuthenticated,
+  removeArtistAndRedirect,
+}) => {
   return (
     <>
       <ArtistCover></ArtistCover>
       <ArtistContainer>
         <ArtistPhoto src={artist.photoUrl} alt={artist.name} />
         <ArtistName>{artist.name}</ArtistName>
-        <div>
-          <h4>About</h4>
+        <Button onClick={removeArtistAndRedirect}>Remove Artist</Button>
+
+        <Section>
+          <Heading color="#7A1111">About</Heading>
           <p>{artist.biography.about}</p>
-        </div>
-        <div>
-          <h4>Exhibitions</h4>
-          <ExhibitionsList>
+        </Section>
+
+        <Section>
+          <Heading color="#C0620B">Exhibitions</Heading>
+          <ExhibitionsList color="#C0620B">
             {artist.biography.exhibitions.map((exhibition, index) => {
               return <li key={index}>{exhibition}</li>;
             })}
           </ExhibitionsList>
-        </div>
-        <div>
-          <h4>Artworks</h4>
+        </Section>
+
+        <Section>
+          <Heading center color="#FF6060">
+            Artworks
+          </Heading>
           <ArtworkList artworks={artist.artworks}></ArtworkList>
-        </div>
+        </Section>
       </ArtistContainer>
     </>
   );
@@ -68,6 +92,8 @@ const ArtistProfile = ({ artist }) => {
 
 ArtistProfile.propTypes = {
   artist: PropTypes.object.isRequired,
+  isAuthenticated: PropTypes.bool,
+  removeArtistAndRedirect: PropTypes.func,
 };
 
 export default ArtistProfile;
