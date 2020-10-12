@@ -4,23 +4,23 @@ const initialState = {
   data: null,
 };
 
-const artist = (state = initialState, action) => {
+const artwork = (state = initialState, action) => {
   switch (action.type) {
-    case "GET_ARTIST_START":
+    case "GET_ARTWORK_START":
       return {
         ...state,
         isLoading: true,
         error: null,
         data: null,
       };
-    case "GET_ARTIST_SUCCESS":
+    case "GET_ARTWORK_SUCCESS":
       return {
         ...state,
         isLoading: false,
         error: null,
         data: action.payload,
       };
-    case "GET_ARTIST_FAILURE":
+    case "GET_ARTWORK_FAILURE":
       return {
         ...state,
         isLoading: false,
@@ -32,4 +32,4 @@ const artist = (state = initialState, action) => {
   }
 };
 
-export default artist;
+export default artwork;

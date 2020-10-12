@@ -39,7 +39,7 @@ const Artist = ({
           <ErrorHeading>Sorry, artist not found.</ErrorHeading>
         )}
 
-        {!isLoading && artist && (
+        {isAuthenticated && !isLoading && artist && (
           <Button onClick={removeArtistAndRedirect}>Remove Artist</Button>
         )}
 

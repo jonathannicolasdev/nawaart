@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { withRouter } from "react-router";
-import { Link, useParams } from "react-router-dom";
+import React, { useEffect } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { Link, useParams, useHistory } from "react-router-dom";
+
 import styled from "styled-components";
-import axios from "axios";
 
 import Page from "../components/Page";
 import ErrorHeading from "../components/ErrorHeading";
 
-import { getToken } from "../utils/token";
+import getArtwork from "../redux/actions/getArtwork";
+import removeArtwork from "../redux/actions/removeArtwork";
 
 const Button = styled.button`
   cursor: pointer;
@@ -41,52 +43,37 @@ const ArtistPhoto = styled.img`
   border-radius: 200px;
 `;
 
-const Artwork = ({ history }) => {
+const Artwork = ({
+  isLoading,
+  error,
+  artwork,
+  isAuthenticated,
+  handleGetArtwork,
+  handleRemoveArtwork,
+}) => {
   const { slug } = useParams();
-  const [artwork, setArtwork] = useState({});
-  const [artist, setArtist] = useState({});
-  const [error, setError] = useState();
-
-  const url = process.env.REACT_APP_API_URL + `/artworks/${slug}`;
+  const history = useHistory();
 
   useEffect(() => {
-    axios
-      .get(url)
-      .then((response) => {
-        setArtwork(response.data.artwork);
-        setArtist(response.data.artwork.artist);
-      })
-      .catch((err) => {
-        setError(err);
-      });
-  }, [url]);
+    handleGetArtwork(slug);
+  }, [handleGetArtwork, slug]);
 
-  const handleRemoveArtwork = async () => {
-    try {
-      const response = await axios.delete(
-        `${process.env.REACT_APP_API_URL}/artworks/${artwork.slug}`,
-        {
-          headers: {
-            Authorization: "Bearer " + getToken(),
-          },
-        }
-      );
-
-      if (response.data) history.push(`/artworks`);
-    } catch (err) {
-      setError(err);
-    }
+  const removeArtworkAndRedirect = async () => {
+    await handleRemoveArtwork(slug);
+    history.push("/artworks");
   };
 
   return (
     <Page>
-      {error && <ErrorHeading>Sorry, artwork not found.</ErrorHeading>}
-
-      {!error && artwork && (
-        <Button onClick={handleRemoveArtwork}>Remove Artwork</Button>
+      {!isLoading && error && (
+        <ErrorHeading>Sorry, artwork not found.</ErrorHeading>
       )}
 
-      {!error && artwork && (
+      {isAuthenticated && !isLoading && !error && artwork && (
+        <Button onClick={removeArtworkAndRedirect}>Remove Artwork</Button>
+      )}
+
+      {!isLoading && !error && artwork && (
         <ArtworkContainer>
           {artwork ? (
             <div>
@@ -98,9 +85,12 @@ const Artwork = ({ history }) => {
                 <span>{artwork.country}</span>
               </ArtworkSection>
 
-              <ArtistLink to={`/artists/${artist.slug}`}>
-                <ArtistPhoto src={artist.photoUrl} alt={artist.name} />
-                <h3>{artist.name}</h3>
+              <ArtistLink to={`/artists/${artwork.artist.slug}`}>
+                <ArtistPhoto
+                  src={artwork.artist.photoUrl}
+                  alt={artwork.artist.name}
+                />
+                <h3>{artwork.artist.name}</h3>
               </ArtistLink>
             </div>
           ) : (
@@ -114,4 +104,29 @@ const Artwork = ({ history }) => {
   );
 };
 
-export default withRouter(Artwork);
+Artwork.propTypes = {
+  isLoading: PropTypes.bool,
+  error: PropTypes.any,
+  artwork: PropTypes.object,
+  isAuthenticated: PropTypes.bool,
+  handleGetArtwork: PropTypes.func,
+  handleRemoveArtwork: PropTypes.func,
+};
+
+const mapStateToProps = (state) => {
+  return {
+    isLoading: state.artwork.isLoading,
+    error: state.artwork.error,
+    artwork: state.artwork.data,
+    isAuthenticated: state.auth.isAuthenticated,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    handleGetArtwork: (slug) => dispatch(getArtwork(slug)),
+    handleRemoveArtwork: (slug) => dispatch(removeArtwork(slug)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Artwork);

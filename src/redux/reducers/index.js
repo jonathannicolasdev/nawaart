@@ -4,6 +4,7 @@ import auth from "./auth";
 import artists from "./artists";
 import artist from "./artist";
 import artworks from "./artworks";
+import artwork from "./artwork";
 import stories from "./stories";
 
 const rootReducer = combineReducers({
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   artists,
   artist,
   artworks,
+  artwork,
   stories,
 });
 
