@@ -6,6 +6,8 @@ import PropTypes from "prop-types";
 
 import logout from "../redux/actions/logout";
 
+import MenuPanel from "./MenuPanel";
+
 const NavigationStyled = styled.nav`
   display: flex;
   justify-content: space-between;
@@ -44,38 +46,45 @@ const MenuButton = styled.span`
 
 const Navigation = ({ isAuthenticated, handleLogout }) => {
   return (
-    <NavigationStyled>
-      <Link to="/">
-        <img src="/nawaart-logo.svg" alt="nawaart" />
-      </Link>
-      <Links>
-        <li>
-          <Link to="/artists">Artists</Link>
-        </li>
-        <li>
-          <Link to="/artworks">Artworks</Link>
-        </li>
-        <li>
-          <Link to="/stories">Stories</Link>
-        </li>
-        <li>
-          <Link to="/about">About</Link>
-        </li>
-        {isAuthenticated && (
+    <>
+      <NavigationStyled>
+        <Link to="/">
+          <img src="/nawaart-logo.svg" alt="nawaart" />
+        </Link>
+        <Links>
           <li>
-            <span onClick={() => handleLogout()}>Logout</span>
+            <Link to="/artists">Artists</Link>
           </li>
-        )}
-      </Links>
-      <MenuButton>
-        <img
-          src="/icons/menu-icon.svg"
-          alt="Menu Icon"
-          width={50}
-          height={50}
-        />
-      </MenuButton>
-    </NavigationStyled>
+          <li>
+            <Link to="/artworks">Artworks</Link>
+          </li>
+          <li>
+            <Link to="/stories">Stories</Link>
+          </li>
+          <li>
+            <Link to="/about">About</Link>
+          </li>
+          {isAuthenticated && (
+            <li>
+              <span onClick={() => handleLogout()}>Logout</span>
+            </li>
+          )}
+        </Links>
+        <MenuButton>
+          <img
+            src="/icons/menu-icon.svg"
+            alt="Menu Icon"
+            width={50}
+            height={50}
+          />
+        </MenuButton>
+      </NavigationStyled>
+
+      <MenuPanel
+        isAuthenticated={isAuthenticated}
+        handleLogout={handleLogout}
+      ></MenuPanel>
+    </>
   );
 };
 
