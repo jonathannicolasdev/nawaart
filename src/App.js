@@ -49,7 +49,7 @@ class App extends Component {
               <Route path="/artworks" component={ArtworksPage} />
               <Route path="/stories/:slug" component={StoryPage}></Route>
               <Route path="/stories" component={StoriesPage} />
-              <Route path="/register" component={RegisterPage} />
+              <Route path="/superregister" component={RegisterPage} />
               <Route path="/login" component={LoginPage} />
               <Route path="*" component={NotFoundPage} />
             </Switch>

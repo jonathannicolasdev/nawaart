@@ -36,7 +36,7 @@ const Register = () => {
   const handleSubmit = async (event) => {
     try {
       event.preventDefault();
-      await axios.post("https://nawaart.herokuapp.com/users/register", {
+      await axios.post(process.env.REACT_APP_API_URL, {
         name,
         email,
         password,
