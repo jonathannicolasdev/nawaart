@@ -30,6 +30,16 @@ const Links = styled.ul`
     color: black;
     text-decoration: none;
   }
+  @media (max-width: 1024px) {
+    display: none;
+  }
+`;
+
+const MenuButton = styled.span`
+  cursor: pointer;
+  @media (min-width: 1024px) {
+    display: none;
+  }
 `;
 
 const Navigation = ({ isAuthenticated, handleLogout }) => {
@@ -57,6 +67,14 @@ const Navigation = ({ isAuthenticated, handleLogout }) => {
           </li>
         )}
       </Links>
+      <MenuButton>
+        <img
+          src="/icons/menu-icon.svg"
+          alt="Menu Icon"
+          width={50}
+          height={50}
+        />
+      </MenuButton>
     </NavigationStyled>
   );
 };
