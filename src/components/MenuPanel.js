@@ -11,6 +11,7 @@ const Overlay = styled.div`
   left: 0;
   top: 0;
   background-color: rgba(0, 0, 0, 0.5);
+  display: ${({ isMenuPanelVisible }) => !isMenuPanelVisible && "none"};
 `;
 
 const MenuPanelStyled = styled.div`
@@ -21,7 +22,15 @@ const MenuPanelStyled = styled.div`
   top: 0;
   right: 0;
   height: 100vh;
-  padding-top: 30px;
+  padding-top: 50px;
+  padding-right: 50px;
+  display: ${({ isMenuPanelVisible }) => !isMenuPanelVisible && "none"};
+`;
+
+const CloseButton = styled.span`
+  cursor: pointer;
+  display: flex;
+  justify-content: flex-end;
 `;
 
 const Links = styled.ul`
@@ -46,12 +55,27 @@ const Links = styled.ul`
   }
 `;
 
-const MenuPanel = ({ isAuthenticated, handleLogout }) => {
+const MenuPanel = ({
+  isMenuPanelVisible,
+  toggleMenuPanelVisible,
+  isAuthenticated,
+  handleLogout,
+}) => {
   return (
     <>
-      <Overlay></Overlay>
+      <Overlay isMenuPanelVisible={isMenuPanelVisible}></Overlay>
 
-      <MenuPanelStyled>
+      <MenuPanelStyled isMenuPanelVisible={isMenuPanelVisible}>
+        <CloseButton
+          onClick={() => toggleMenuPanelVisible(!isMenuPanelVisible)}
+        >
+          <img
+            src="/icons/close-icon.svg"
+            alt="Close Icon"
+            width={50}
+            height={50}
+          />
+        </CloseButton>
         <Links>
           <li>
             <Link to="/artists">Artists</Link>
@@ -77,6 +101,8 @@ const MenuPanel = ({ isAuthenticated, handleLogout }) => {
 };
 
 MenuPanel.propTypes = {
+  isMenuPanelVisible: PropTypes.bool,
+  toggleMenuPanelVisible: PropTypes.func,
   isAuthenticated: PropTypes.bool,
   handleLogout: PropTypes.func,
 };

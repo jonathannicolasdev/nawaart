@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
@@ -45,6 +45,8 @@ const MenuButton = styled.span`
 `;
 
 const Navigation = ({ isAuthenticated, handleLogout }) => {
+  const [isMenuPanelVisible, toggleMenuPanelVisible] = useState(true);
+
   return (
     <>
       <NavigationStyled>
@@ -70,7 +72,7 @@ const Navigation = ({ isAuthenticated, handleLogout }) => {
             </li>
           )}
         </Links>
-        <MenuButton>
+        <MenuButton onClick={() => toggleMenuPanelVisible(!isMenuPanelVisible)}>
           <img
             src="/icons/menu-icon.svg"
             alt="Menu Icon"
@@ -81,6 +83,8 @@ const Navigation = ({ isAuthenticated, handleLogout }) => {
       </NavigationStyled>
 
       <MenuPanel
+        isMenuPanelVisible={isMenuPanelVisible}
+        toggleMenuPanelVisible={toggleMenuPanelVisible}
         isAuthenticated={isAuthenticated}
         handleLogout={handleLogout}
       ></MenuPanel>
