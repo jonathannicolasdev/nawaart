@@ -37,10 +37,22 @@ const Heading = styled.h1`
 
 const Big = styled.span`
   font-size: 150px;
+  @media (max-width: 1024px) {
+    font-size: 100px;
+  }
+  @media (max-width: 425px) {
+    font-size: 60px;
+  }
 `;
 
 const Small = styled.span`
   font-size: 50px;
+  @media (max-width: 1024px) {
+    font-size: 40px;
+  }
+  @media (max-width: 425px) {
+    font-size: 30px;
+  }
 `;
 
 const ActionLink = styled(Link)`

@@ -13,6 +13,15 @@ const NavigationStyled = styled.nav`
   justify-content: space-between;
   align-items: center;
   padding: 50px;
+  @media (max-width: 1024px) {
+    padding: 20px;
+  }
+`;
+
+const LogoImage = styled.img`
+  @media (max-width: 1024px) {
+    height: 30px;
+  }
 `;
 
 const Links = styled.ul`
@@ -45,13 +54,13 @@ const MenuButton = styled.span`
 `;
 
 const Navigation = ({ isAuthenticated, handleLogout }) => {
-  const [isMenuPanelVisible, toggleMenuPanelVisible] = useState(true);
+  const [isMenuPanelVisible, toggleMenuPanelVisible] = useState(false);
 
   return (
     <>
       <NavigationStyled>
         <Link to="/">
-          <img src="/nawaart-logo.svg" alt="nawaart" />
+          <LogoImage src="/nawaart-logo.svg" alt="nawaart" />
         </Link>
         <Links>
           <li>
