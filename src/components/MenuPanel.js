@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
@@ -61,11 +61,29 @@ const MenuPanel = ({
   isAuthenticated,
   handleLogout,
 }) => {
+  const node = useRef();
+
+  const handleClickOutside = (e) => {
+    // When inside click happens, don't do anything
+    if (node.current.contains(e.target)) return;
+    // When outside click happens, do something
+    toggleMenuPanelVisible(false);
+  };
+
+  useEffect(() => {
+    if (isMenuPanelVisible)
+      document.addEventListener("mousedown", handleClickOutside);
+    else document.removeEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  });
+
   return (
     <>
       <Overlay isMenuPanelVisible={isMenuPanelVisible}></Overlay>
 
-      <MenuPanelStyled isMenuPanelVisible={isMenuPanelVisible}>
+      <MenuPanelStyled ref={node} isMenuPanelVisible={isMenuPanelVisible}>
         <CloseButton
           onClick={() => toggleMenuPanelVisible(!isMenuPanelVisible)}
         >
