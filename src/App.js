@@ -7,6 +7,7 @@ import { AnimatePresence } from "framer-motion";
 import PrivateRoute from "./PrivateRoute";
 import ScrollToTop from "./components/ScrollToTop";
 
+import NotFoundPage from "./pages/NotFound";
 import HomePage from "./pages/Home";
 import ArtistsPage from "./pages/Artists";
 import ArtistPage from "./pages/Artist";
@@ -19,7 +20,7 @@ import AboutPage from "./pages/About";
 import LoginPage from "./pages/Login";
 import AddArtistPage from "./pages/AddArtist";
 import AddArtworkPage from "./pages/AddArtwork";
-import NotFoundPage from "./pages/NotFound";
+import AddStoryPage from "./pages/AddStory";
 
 import store from "./redux/store";
 
@@ -47,6 +48,11 @@ class App extends Component {
               />
               <Route path="/artworks/:slug" component={ArtworkPage} />
               <Route path="/artworks" component={ArtworksPage} />
+              <PrivateRoute
+                path="/stories/add"
+                component={AddStoryPage}
+                exact
+              />
               <Route path="/stories/:slug" component={StoryPage}></Route>
               <Route path="/stories" component={StoriesPage} />
               <Route path="/superregister" component={RegisterPage} />

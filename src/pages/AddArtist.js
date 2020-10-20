@@ -43,6 +43,7 @@ const Input = styled.input`
 `;
 
 const TextArea = styled.textarea`
+  font-family: "Open Sans", sans-serif;
   font-size: 1.5rem;
   padding: 10px;
   height: 200px;
