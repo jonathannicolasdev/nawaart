@@ -8,6 +8,9 @@ const ArtworkListContainer = styled.div`
   display: block;
   columns: 20rem;
   gap: 2rem;
+  @media (max-width: 768px) {
+    margin: 50px 20px;
+  }
 `;
 
 const ArtworkCard = styled.div`

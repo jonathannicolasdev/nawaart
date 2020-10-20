@@ -8,6 +8,9 @@ const HeroStyled = styled.div`
   justify-content: center;
   color: #ffffff;
   padding: 50px 0px;
+  @media (max-width: 768px) {
+    padding: 50px;
+  }
   background: linear-gradient(
       0deg,
       ${(props) => props.backgroundColor},
@@ -18,10 +21,16 @@ const HeroStyled = styled.div`
     font-size: 50px;
     margin-bottom: 10px;
     margin-top: 0px;
+    @media (max-width: 768px) {
+      font-size: 24px;
+    }
   }
   p {
     font-size: 24px;
     margin: 0;
+    @media (max-width: 768px) {
+      font-size: 12px;
+    }
   }
 `;
 
