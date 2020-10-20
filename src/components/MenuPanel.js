@@ -22,8 +22,8 @@ const MenuPanelStyled = styled.div`
   top: 0;
   right: 0;
   height: 100vh;
-  padding-top: 50px;
-  padding-right: 50px;
+  padding-top: 20px;
+  padding-right: 20px;
   display: ${({ isMenuPanelVisible }) => !isMenuPanelVisible && "none"};
 `;
 
