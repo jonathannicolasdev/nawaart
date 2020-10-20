@@ -21,16 +21,23 @@ const ArtistCard = styled.div`
   text-align: center;
   margin: 0 25px;
   margin-bottom: 50px;
+  @media (max-width: 768px) {
+    margin: 0 15px;
+    margin-bottom: 30px;
+  }
 `;
 
 const ArtistName = styled.span`
-  font-size: 28px;
   font-weight: bold;
   color: white;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  font-size: 28px;
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
 `;
 
 const ArtistImage = styled.img`
@@ -39,6 +46,14 @@ const ArtistImage = styled.img`
   border-radius: 300px;
   object-fit: cover;
   filter: brightness(0.5);
+  @media (max-width: 768px) {
+    width: 150px;
+    height: 150px;
+  }
+  @media (max-width: 320px) {
+    width: 120px;
+    height: 120px;
+  }
 `;
 
 const ArtistList = ({ artists }) => {
