@@ -41,7 +41,8 @@ const Button = styled.button`
 `;
 
 const ExhibitionsFormGroup = ({ exhibitions, setExhibitions }) => {
-  const handleAdd = () => {
+  const handleAdd = (event) => {
+    console.log(event);
     const updatedExhibitions = exhibitions.concat("");
     setExhibitions(updatedExhibitions);
   };
@@ -77,8 +78,12 @@ const ExhibitionsFormGroup = ({ exhibitions, setExhibitions }) => {
                 value={exhibition}
                 onChange={(event) => handleEdit(event, index)}
               />
-              <Button onClick={() => handleRemove(index)}>{"-"}</Button>
-              <Button onClick={handleAdd}>{"+"}</Button>
+              <Button type="button" onClick={() => handleRemove(index)}>
+                {"-"}
+              </Button>
+              <Button type="button" onClick={() => handleAdd()}>
+                {"+"}
+              </Button>
             </ExhibitionItem>
           );
         })}
