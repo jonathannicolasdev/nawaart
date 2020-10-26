@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { withRouter } from "react-router";
 import styled from "styled-components";
 import axios from "axios";
-import Select from "react-select";
 
 import { getToken } from "../utils/token";
 
