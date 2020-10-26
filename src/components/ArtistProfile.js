@@ -12,10 +12,11 @@ const ArtistCover = styled.div`
 `;
 
 const ArtistContainer = styled.div`
-  margin: -150px;
+  margin-top: -150px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 `;
 
 const ArtistPhoto = styled.img`
@@ -29,13 +30,20 @@ const ArtistName = styled.h3`
   font-size: 72px;
   margin: 0;
   margin-bottom: 30px;
+  @media (max-width: 1024px) {
+    font-size: 36px;
+  }
 `;
 
 const Section = styled.section`
   font-size: 22px;
-  width: 900px;
   margin-bottom: 50px;
   line-height: 150%;
+  width: 900px;
+  margin: 50px;
+  @media (max-width: 1024px) {
+    width: 100%;
+  }
 `;
 
 const Heading = styled.h4`
