@@ -8,6 +8,7 @@ import Page from "../components/Page";
 import Hero from "../components/Hero";
 import Content from "../components/Content";
 import LinkButton from "../components/LinkButton";
+import StoryDate from "../components/StoryDate";
 
 import getStories from "../redux/actions/getStories";
 
@@ -48,10 +49,6 @@ const StoryTitle = styled.h1`
   font-size: 2.5em;
 `;
 
-const StoryDate = styled.time`
-  font-size: 1.5em;
-`;
-
 const Stories = ({ isLoading, stories, isAuthenticated, handleGetStories }) => {
   useEffect(() => {
     handleGetStories();
@@ -81,7 +78,7 @@ const Stories = ({ isLoading, stories, isAuthenticated, handleGetStories }) => {
                     <StoryImage src={story.imageUrl} alt={story.title} />
                     <StoryInfo>
                       <StoryTitle>{story.title}</StoryTitle>
-                      <StoryDate datetime="2018-07-07">July 7</StoryDate>
+                      <StoryDate>{story.date}</StoryDate>
                     </StoryInfo>
                   </Story>
                 </StoryLink>

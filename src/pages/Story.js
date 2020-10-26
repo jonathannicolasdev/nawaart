@@ -5,6 +5,7 @@ import axios from "axios";
 
 import Page from "../components/Page";
 import ErrorHeading from "../components/ErrorHeading";
+import StoryDate from "../components/StoryDate";
 
 const StoryContainer = styled.div`
   display: flex;
@@ -12,10 +13,20 @@ const StoryContainer = styled.div`
   align-items: center;
   width: 800px;
   margin: auto;
-  img {
-    object-fit: cover;
-    width: 400px;
-    height: 400px;
+`;
+
+const StoryImage = styled.img`
+  object-fit: cover;
+  width: 720px;
+  height: auto;
+  border-radius: 10px;
+`;
+
+const StoryTitle = styled.h1``;
+
+const StoryContent = styled.div`
+  p {
+    font-size: 1.2em;
   }
 `;
 
@@ -45,9 +56,10 @@ const Story = () => {
 
       {!error && story && story.title && (
         <StoryContainer>
-          <img src={story.imageUrl} alt="" />
-          <h2>{story.title}</h2>
-          <div dangerouslySetInnerHTML={{ __html: story.content }} />
+          <StoryImage src={story.imageUrl} alt={story.title} />
+          <StoryTitle>{story.title}</StoryTitle>
+          <StoryDate>{story.date}</StoryDate>
+          <StoryContent dangerouslySetInnerHTML={{ __html: story.content }} />
         </StoryContainer>
       )}
     </Page>

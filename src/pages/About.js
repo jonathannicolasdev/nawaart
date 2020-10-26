@@ -76,9 +76,9 @@ const About = () => {
         </Hero>
         <Content>
           <p>
-            Jonathan Nicolas and Aung Myint Tun built Nawaart in 2020. The
-            gallery represents a diverse range of contemporary artists and
-            estates from Myanmar.
+            <a href="https://jonathanicolas.dev">Jonathan Nicolas</a> and Aung
+            Myint Tun built Nawaart in 2020. The gallery represents a diverse
+            range of contemporary artists and estates from Myanmar.
           </p>
         </Content>
       </AboutContainer>
