@@ -22,6 +22,7 @@ const Button = styled.button`
 const ArtworkContainer = styled.div`
   display: flex;
   justify-content: center;
+  width: 100%;
 `;
 
 const ArtworkSection = styled.section`
@@ -30,6 +31,9 @@ const ArtworkSection = styled.section`
 
 const ArtworkImage = styled.img`
   width: 720px;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const ArtistLink = styled(Link)`
