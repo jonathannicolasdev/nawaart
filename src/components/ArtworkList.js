@@ -58,10 +58,10 @@ const ArtworkList = ({ artworks }) => {
               </Link>
               <TitleYear>
                 <Title>{artwork.title}</Title>
-                <Year>2018</Year>
+                <Year>{artwork.year}</Year>
               </TitleYear>
               <Info>
-                <Dimensions>12 x 15 x 20 cm</Dimensions>
+                <Dimensions>{artwork.dimensions}</Dimensions>
               </Info>
             </ArtworkCard>
           );
