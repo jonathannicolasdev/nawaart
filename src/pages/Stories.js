@@ -13,28 +13,43 @@ import getStories from "../redux/actions/getStories";
 
 const StoriesContainer = styled.div`
   margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
 `;
 
-const StoryContainer = styled.div`
+const StoryLink = styled(Link)`
+  color: inherit;
+  text-decoration: none;
+`;
+
+const Story = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: space-evenly;
   margin: 20px;
-  img {
-    width: 400px;
-    height: 300px;
-  }
-  h2 {
-    width: 500px;
-  }
-  a {
-    color: black;
-    text-decoration: none;
-  }
+  max-width: 950px;
 `;
 
 const StoryImage = styled.img`
+  border-radius: 10px;
+  height: auto;
   object-fit: cover;
+  width: 400px;
+  max-height: 300px;
+`;
+
+const StoryInfo = styled.div`
+  margin-left: 30px;
+`;
+
+const StoryTitle = styled.h1`
+  margin: 0;
+  margin-bottom: 30px;
+  font-size: 2.5em;
+`;
+
+const StoryDate = styled.time`
+  font-size: 1.5em;
 `;
 
 const Stories = ({ isLoading, stories, isAuthenticated, handleGetStories }) => {
@@ -61,15 +76,15 @@ const Stories = ({ isLoading, stories, isAuthenticated, handleGetStories }) => {
           <StoriesContainer>
             {stories.map((story, index) => {
               return (
-                <StoryContainer key={index}>
-                  <Link to={`/stories/${story.slug}`}>
-                    <StoryImage
-                      src={story.imageUrl}
-                      alt={story.title}
-                    ></StoryImage>
-                    <h2>{story.title}</h2>
-                  </Link>
-                </StoryContainer>
+                <StoryLink key={story.slug} to={`/stories/${story.slug}`}>
+                  <Story>
+                    <StoryImage src={story.imageUrl} alt={story.title} />
+                    <StoryInfo>
+                      <StoryTitle>{story.title}</StoryTitle>
+                      <StoryDate datetime="2018-07-07">July 7</StoryDate>
+                    </StoryInfo>
+                  </Story>
+                </StoryLink>
               );
             })}
           </StoriesContainer>
