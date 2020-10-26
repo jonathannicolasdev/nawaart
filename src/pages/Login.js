@@ -20,7 +20,7 @@ const Form = styled.form`
 const FormGroup = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 20px;
+  margin: 20px 0;
 `;
 
 const Label = styled.label`
@@ -30,6 +30,10 @@ const Label = styled.label`
 const Input = styled.input`
   font-size: 1.5rem;
   padding: 10px;
+`;
+
+const Error = styled.p`
+  color: red;
 `;
 
 const Login = ({ isLoading, error, isAuthenticated, handleLogin }) => {
@@ -78,7 +82,11 @@ const Login = ({ isLoading, error, isAuthenticated, handleLogin }) => {
                 disable={isLoading}
               />
             </FormGroup>
-            {error && <p>{JSON.stringify(error)}</p>}
+            {error && (
+              <Error>
+                Login failed. Please check your email and password again.
+              </Error>
+            )}
           </Form>
         </FormContainer>
       )}
