@@ -63,7 +63,9 @@ const ArtistProfile = ({
       <ArtistContainer>
         <ArtistPhoto src={artist.photoUrl} alt={artist.name} />
         <ArtistName>{artist.name}</ArtistName>
-        <Button onClick={removeArtistAndRedirect}>Remove Artist</Button>
+        {isAuthenticated && (
+          <Button onClick={removeArtistAndRedirect}>Remove Artist</Button>
+        )}
 
         <Section>
           <Heading color="#7A1111">About</Heading>
