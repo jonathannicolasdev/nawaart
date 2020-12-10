@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { withRouter } from "react-router";
 import styled from "styled-components";
 import axios from "axios";
 
@@ -28,21 +29,24 @@ const Input = styled.input`
   padding: 10px;
 `;
 
-const Register = () => {
+const Register = ({ history }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = async (event) => {
     try {
+      const url = `${process.env.REACT_APP_API_URL}/users/superregister`;
       event.preventDefault();
-      await axios.post(process.env.REACT_APP_API_URL, {
+      await axios.post(url, {
         name,
         email,
         password,
       });
-    } catch (e) {
-      console.error(e);
+      history.push("/login");
+    } catch (error) {
+      console.error(error);
+      alert(error);
     }
   };
 
@@ -91,4 +95,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default withRouter(Register);
